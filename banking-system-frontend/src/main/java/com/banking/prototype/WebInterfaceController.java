@@ -1,5 +1,4 @@
-package com.banking.prototype.controllers;
-
+package com.banking.prototype;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,5 +12,4 @@ public class WebInterfaceController {
     public String welcome(Model model) {
         return "home";
     }
-
 }

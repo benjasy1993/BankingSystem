@@ -1,4 +1,10 @@
+banking-system-frontend/.idea/*
+banking-system-prototype/.idea/*
+banking-system-frontend/target/*
+banking-system-prototype/target/*
 *.iml
+banking-system-prototype/*.iml
+banking-system-frontend/*.iml
 
 # Compiled class file
 *.class
