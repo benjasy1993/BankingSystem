@@ -5,7 +5,9 @@ from . import views
 app_name = 'banking_system'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.home, name='home'),
     url(r'^register/$',views.register,name='register'),
-    url(r'^user_login/$',views.user_login,name='user_login'),
+    url(r'^dashboard/$',views.dashboard,name='dashboard'),
+    url(r'^logout/$',views.user_logout,name='logout'),
+    url(r'^profile/$',views.profile,name='profile'),
 ]

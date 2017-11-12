@@ -1,3 +1,6 @@
+frontend/banking_system/*.pyc
+frontend/banking_system/migrations/*.pyc
+
 banking-system-frontend/.idea/*
 banking-system-prototype/.idea/*
 banking-system-frontend/target/*
