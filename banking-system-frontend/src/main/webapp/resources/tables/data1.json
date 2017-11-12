@@ -1,0 +1,28 @@
+[
+    {
+        "id" : 1,
+        "postdate": 0,
+        "description": "Item 0",
+        "type": 1,
+        "status": 0,
+        "amount": "$0",
+        "balance": "$0"
+    },
+    {
+        "id": 2,
+        "postdate": 0,
+        "description": "Item 0",
+        "type": 1,
+        "status" : 1,
+        "amount": "$0",
+        "balance": "$0"
+    },
+    {
+        "postdate": 0,
+        "description": "Item 0",
+        "type": 1,
+        "status": 0,
+        "amount": "$0",
+        "balance": "$0"
+    }
+]
