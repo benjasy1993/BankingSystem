@@ -2,5 +2,12 @@ package com.banking.prototype.models;
 
 
 public class Activity {
-    private ActivityType activityType;
+
+    private BankAccount account;
+
+    private Transaction transaction;
+
+    private String description;
+
+    private long balance;
 }
