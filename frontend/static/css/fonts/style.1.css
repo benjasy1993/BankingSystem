@@ -192,7 +192,7 @@ html.webkit * {
     max-height: 1000000px;
 }
 .mtop-30 {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .btn-bofa-blue {
@@ -508,4 +508,118 @@ a.button-gray, a.button-gray:hover, a.button-gray:active, a.button-gray:visited,
     top: 0;
     height: 100%;
     width: 100%;
+}
+.left-padding{
+    padding-left: 2rem;
+}
+#leftCol_twoThirds {
+    float: left;
+    width: 610px;
+}
+
+.bp-panel-left{
+    height: 420px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    background: white;
+}
+.bp-panelHead {
+    height: 30px;
+    color: #FFFFFF !important;
+    background-color: #d43f3a;
+    border-bottom: 1px solid #d43f3a;
+}
+.bp-panelHeadTitle {
+    height: 30px;
+    float: left;
+    padding: 6px 0 0 10px;
+    margin: 0;
+}
+.bp-panelHeadTitle-right {
+    height: 30px;
+    margin: 0;
+    font-weight: bold;
+}
+.bp-h1{
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-left:1rem;
+    color: #fff;
+}
+
+.bp-panelContent {
+    margin: 0;
+    padding: 0px;
+    background: #fff;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    font-size: 1.1em;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: baseline;
+}
+#bpWelcome1 {
+    float: left;
+    margin: 0 0 10px 20px;
+    height: 300px;
+    width: 270px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+#bpWelcome2 {
+    float: right;
+    margin: 0 25px 0 10px;
+    height: 300px;
+    width: 270px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.bpWelcome_Content {
+    padding: 0 5px 5px 0;
+    font-size: 11px;
+    color: #666;
+    line-height: 16px;
+    height: 105px;
+    padding-top: 1rem;
+}
+.bpWelcome_Content h1 {
+    color: #369;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 0 0;
+    text-align: center;
+}
+
+.bp-p {
+    margin: 0;
+    font-size: small;
+
+    padding: 10px 10px 5px 10px;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    vertical-align: baseline;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.buttonCenter{
+    padding-top: 2rem;
+}
+.text1 {
+    color: #333333;
+    background-color: transparent;
+    font-size: medium;
+}
+a.linkblue {
+    color: #405EBE;
+    background-color: transparent;
+}
+a.linkblue:visited{
+    color: #405EBE;
+    background-color: transparent;
 }
