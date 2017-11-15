@@ -13,3 +13,6 @@ class UserProfileInfo(models.Model):
 	phone_num = models.CharField(blank=True, max_length=20)
 	def __str__(self):
 		return self.user.username
+
+	def get_user(self):
+		return self.user

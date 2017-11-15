@@ -1,5 +1,6 @@
 frontend/banking_system/*.pyc
 frontend/banking_system/migrations/*.pyc
+frontend/db.sqlite3
 
 banking-system-frontend/.idea/*
 banking-system-prototype/.idea/*

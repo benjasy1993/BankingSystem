@@ -7,12 +7,12 @@
 
         <form enctype="multipart/form-data" method="POST">
           {% csrf_token %}
+          {{ update_form.as_p }}
           {{ profile_form.as_p }}
           <input type="submit" name="" value="Update">
         </form>
 
     </div>
-
   </div>
 
 {% endblock %}

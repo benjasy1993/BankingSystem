@@ -165,7 +165,7 @@
                 </li>
                 <li class="quickmenu">
                     <a href="javascript:;" data-toggle="dropdown">
-                        <img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="Option" title="user">
+                        <img src="{% static 'img/avatar.jpg' %}" class="avatar pull-left img-circle" alt="Option" title="user">
                         <i class="caret mg-l-xs hidden-xs no-margin"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
@@ -343,7 +343,7 @@
                 <div class="content-wrap">
                     <div class="row mg-b">
                         <div class="col-xs-6">
-                            <h3 class="no-margin">Welcome Back, Yang</h3>
+                            <h3 class="no-margin">Welcome Back, {{ user.first_name }}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -519,7 +519,7 @@
     <script src="{% static "vendor/pace/pace.min.js" %}"></script>
 
 
-    <script src="{% static "js/main.js" %}js/off-canvas.js"></script>
+    <script src="{% static "js/off-canvas.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
 
     <script src="{% static "js/panel.js" %}"></script>
