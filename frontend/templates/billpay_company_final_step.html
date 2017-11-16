@@ -63,6 +63,7 @@
     <link rel="stylesheet" href="{% static "css/skins/palette.1.css" %}" id="skin">
     <link rel="stylesheet" href="{% static "css/fonts/style.1.css" %}" id="font">
     <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "css/billpay.css" %}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -125,7 +126,7 @@
                 <button class="btn no-border no-margin bg-none no-pd-l" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
-                <input type="text" class="form-control no-border no-padding search" placeholder="Search">
+                <input type="text" class=" no-border no-padding search" placeholder="Search">
             </div>
         </form>
         <ul class="nav navbar-nav navbar-right off-right">
@@ -329,141 +330,120 @@
             <div class="content-wrap">
                 <div class="row mg-b">
                     <div class="col-xs-6">
-                        <h3 class="no-margin">Bill Pay</h3>
+                        <h3 class="no-margin">Add A Bill</h3>
                     </div>
                 </div>
-                <div class="row">
-                        <!-- Left Column -->
-                        <div id="leftCol_twoThirds">
-
-                            <div class="bp-panel-left" >
-                                <div class="bp-box bp-border bp-red bp-panelHead">
-                                    <div class="bp-panelHeadTitle">
-                                        <i class="fa fa-retweet"></i><span class="bp-h1">Welcome to Online Bill Pay</span>
-                                    </div>
+                <div class="container" style="width: 100%">
+                    <div class="panel" style="height: 500px">
+                        <div class="panel-heading">Add A Bill</div>
+                          <div id="container">
+                              <div class="module">
+                                <div class="modhead">
+                                      <h2>Add Biller Information</h2>
                                 </div>
-                                <div class="bp-panelContent">
+                                <div class="modbody">
+                                  <p class="help-link-cleared"><a href="wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt" onclick="this.href='javascript:popRemoteSmall(\'wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt\')';this.target='';" title="">Tell me about adding bills ...</a></p>
+                                  <div id="genErrors"></div>
+                                  <script type="text/javascript">
+                                                        <!--!
+                                                            function submitForm(value) {
+                                                                document.addpayee.buttonClicked.value = value;
+                                                                document.addpayee.submit();
+                                                            }
 
-                                    <!-- Panel Content -->
+                                                        function goBackToAddPage() {
+                                                            window.location.href = "wps?rq=qaadd&sp=FI05&oss=4ce010a08bb78ed526543e023ce25d0e";
+                                                        }
+                                                        // -->
+                                                    </script>
 
-                                    <span class="bp-p"><strong>You have not set up any bills yet.</strong>
-                                        <br> Please add your first bill to start using Online Bill Pay by choosing one of the following options:</span>
+                              <form action="wps" method="post" name="addpayee" autocomplete="off">
+                                  <input type="hidden" name="buttonClicked">
+                                    <input type="hidden" name="rq" value="pyposack">
+                                    <input type="hidden" name="MrchNum" value="3233">
+                                    <input type="hidden" name="name" value="AAA Auto Club South - Membership">
+                                    <input type="hidden" name="type" value="withAcct">
+                                    <input type="hidden" name="pageName" value="pyfindcom">
+                                    <input type="hidden" name="searchStringValue" value="Y">
+                                    <input type="hidden" name="cleanBillerName" value="AAA Auto Club South - Membership">
+                                    <input type="hidden" name="uniqueParamName" value="97c822c89105fef8bb50c61f002fd777a80077bbccb7c6962610175977a664cf3b1deed1bfada4102fa8d9497e3513484cdb55b2f235be291919fd74b910814e03a499ce27c6581829502c569fa7ea5e">
+                                    <input type="hidden" name="sp" value="FI05">
+                                    <input type="hidden" name="oss" value="4ce010a08bb78ed526543e023ce25d0e">
 
-                                    <div id="bpWelcome1" class="col-md-6">
-                                        <div style="margin-left: 50px;padding-top: 1rem"><img src="https://www.westmark.org/images/bill-pay.jpg" width="120px" height="120px"></div>
-                                        <div class="bpWelcome_Content">
-                                            <h1>Add Your First Bill Now</h1> The first step to pay bills online is to add a payee. It doesn't matter if it's a company or a person. You can send a payment to almost anybody. Pay your bills from a credit card, phone, utilities or other vendors and suppliers
+                                    <p class="bp-p">We found a match for AAA Auto Club South - Membership. Please enter the additional information for this company to ensure that your payment is properly credited.</p>
+                                    <p></p>
+                                    <p class="row-fix para">
+                                    <label class="para col-xs-3" for="billName">* Biller Name<span class="bp-span">As it appears on  bill</span></label>
+                                    <input name="billName" id="billName" type="text" value="" maxlength="32" size="36">
+                                    </p>
+                                    <p class="row-fix para">
+                                    <label class="para col-xs-3" for="accountNumber">* Account Number<span class="bp-span">As it appears on  bill</span></label>
+                                    <input name="accountNumber" id="accountNumber" type="text" value="" maxlength="32" size="36">
+                                    </p>
+                                    <p class="row-fix para">
+                                    <label class="para col-xs-3" for="acctConf">* Confirm Account Number</label>
+                                    <input name="acctConf" type="text" id="acctConf" value="" size="36" maxlength="32">
+                                    </p>
+
+                                    <p class="last-row para" id="sp_routine">
+                                    <label class="para col-xs-3" for="r">* Routine Number</label>
+                                    <input name="r" type="text" id="r" size="10" maxlength="10" value="" onkeypress="return numbersonly(this, event)">
+                                    </p>
+                                    <p class="last-row para" id="sp_amount">
+                                        <label class="para col-xs-3" for="a">* Amount</label>
+                                        <input name="a" type="text" id="a" size="30" maxlength="30" value="" onkeypress="return numbersonly(this, event)">
+                                    </p>
+                                    <script language="JavaScript" type="text/javascript">
+                                                            <!--!
+                                                                autojump('z', 'z4', 5, 'addpayee');
+                                                            //-->
+                                                        </script>
+
+                                                        <ul class="search-buttons" style="float: none">
+                                                            <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="javascript:submitMPChgPayPlanForm('Save Changes');">Add Bill</a></li>
+                                                            <li class="btn btn-default" style="font-weight: bold"><a href="javascript:goBackToQuickAddPage();">Cancel</a></li>
+                                                        </ul>
+                                                    </form>
+                                                </div>
+                                                <div class="brc">
+                                                    <div class="blc"></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!-- click button and transfer user to the billpay_selecttype.html-->
-                                        <a href="{% url 'banking_system:billpay_addbill' %}"><div class="buttonCenter" style="text-align: center;">
-                                                <input type="button" class="btn btn-primary" value="Add Bills"  id="Add Bills">
-                                        </div></a>
+
                                     </div>
-
-                                    <div id="bpWelcome2" class="col-md-6">
-                                        <div style="margin-left: 70px;padding-top: 1.5rem;padding-bottom: 5px"><img src="https://www.ofx.com/-/media/Icons/Iconography%202017/OFX%20Ways%20to%20transfer/Buy%20now%20transfer%20later.ashx?h=400&w=400&la=en-AU&hash=59CB21FD4A707C07FE13AF2A6DE304306D6DF03F" width="100px" height="100px"></div>
-                                        <div class="bpWelcome_Content">
-                                            <h1>View your Bill Pay History</h1> Or, if you are already paying bills online at Devoushire, let our Bill Pay Quick display tool help you view your Online Bill Pay history
-                                        </div>
-                                        <div class="buttonCenter" style="text-align: center;">
-                                            <input type="button" class="btn btn-default" value="View History" onclick="location='/alservlet/BpaaFramesetServlet'" id="Switch Payees">
-                                        </div>
-                                    </div>
-
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="panelFooter">
-                                    <div class="panelFooterRight">&nbsp;</div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                            <section class="col-md-4 panel-primary" style="padding-left: 1rem;">
-
-                                <div class="panel-heading" style="height: 30px;">
-                                    <div class="bp-panelHeadTitle-right">
-                                        <i class="fa fa-info-circle"></i><span class="bp-h1" style="padding-bottom: 1rem">More Information</span>
-                                    </div>
-                                </div>
-
-                                <div class="panelContent" style="background: white; border: 1px solid lightgrey;">
-                                    <p style="padding-top: 1rem; text-align: center"><strong>What Do I Need to Set Up Online Bill Pay?</strong></p>
-
-                                    <p style="padding-left: 1rem">For the easiest setup experience, please have the following available:</p>
-
-                                    <ul style="padding-left: 1rem">
-                                        <li>Account numbers for each bill, if required</li>
-                                        <li>Payment addresses for each bill payee</li>
-                                        <li>Online credentials for your bill payee websites to enable some e-bills</li>
-                                    </ul>
-                                    <!-- End Panel Content -->
-
-                                    <div class="clear"></div>
-                                </div>
-                            </section>
-
-                    <section class="col-md-4 panel-color" style="padding-top: 2rem;">
-                        <div class="panel-heading" style="height: 30px;">
-                            <div class="bp-panelHeadTitle-right">
-                                <i class="fa fa-phone"></i><span class="bp-h1" style="padding-bottom: 1rem">Help Center</span>
-                            </div>
-                        </div>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody style="background: white;">
-                            <tr style="height: 25px;">
-                                <td valign="top"style="padding: 0px 9px 0px 0px;">
-                                <i class="glyphicon glyphicon-question-sign"></i></td>
-                                <td width="100%" class="text1" valign="top" style="padding: 2px 0px 0px 0px;"><a class="linkblue" href="" target="largeHelpWin" onclick="" title="Get help with Bill Pay">Help</a></td>
-                            </tr>
-                            <tr style="height: 25px;">
-                                <td valign="top" style="padding: 12px 9px 0px 0px;">
-                                    <i class="glyphicon glyphicon-user"></i></td>
-                                <td width="100%" class="text1" valign="top" style="padding: 12px 0px 0px 0px;"><a class="linkblue" href="" title="Customer Service">Customer Service</a></td>
-                            </tr>
-                            <tr style="height: 25px;">
-                                <td valign="top" style="padding: 12px 9px 0px 0px;">
-                                    <i class="glyphicon glyphicon-envelope"></i></td>
-                                <td width="100%" class="text1" valign="top" style="padding: 12px 0px 0px 0px;"><a class="linkblue" href="" title="Send us a Email">Send us a Email</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </section>
-
-                    </div>
-                </div>
-
-
+                          </div>
+            </div>
 
         </section>
 
     </section>
 </div>
+<link rel="stylesheet" href="{% static "css/billpay.css" %}">
 
-<script src="vendor/jquery-1.11.1.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="vendor/jquery.easing.min.js"></script>
-<script src="vendor/jquery.placeholder.js"></script>
-<script src="vendor/fastclick.js"></script>
+<script src="{% static "vendor/jquery-1.11.1.min.js" %}"></script>
+<script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+<script src="{% static "vendor/jquery.easing.min.js" %}"></script>
+<script src="{% static "vendor/jquery.placeholder.js" %}"></script>
+<script src="{% static "vendor/fastclick.js" %}"></script>
 
-<script src="vendor/moment.js"></script>
-<script src="vendor/skycons.js"></script>
-<script src="vendor/jquery.blockUI.js"></script>
-<script src="vendor/raphael.min.js"></script>
-<script src="vendor/morris/morris.js"></script>
-<script src="vendor/switchery/switchery.js"></script>
-<script src="vendor/jquery.slimscroll.js"></script>
-<script src="vendor/bxslider/jquery.bxslider.min.js"></script>
-<script src="vendor/offline/offline.min.js"></script>
-<script src="vendor/pace/pace.min.js"></script>
+<script src="{% static "vendor/moment.js" %}"></script>
+<script src="{% static "vendor/skycons.js" %}"></script>
+<script src="{% static "vendor/jquery.blockUI.js" %}"></script>
+<script src="{% static "vendor/raphael.min.js" %}"></script>
+<script src="{% static "vendor/morris/morris.js" %}"></script>
+<script src="{% static "vendor/switchery/switchery.js" %}"></script>
+<script src="{% static "vendor/jquery.slimscroll.js" %}"></script>
+<script src="{% static "vendor/bxslider/jquery.bxslider.min.js" %}"></script>
+<script src="{% static "vendor/offline/offline.min.js" %}"></script>
+<script src="{% static "vendor/pace/pace.min.js" %}"></script>
 
 
-<script src="js/off-canvas.js"></script>
-<script src="js/main.js"></script>
+<script src="{% static "js/off-canvas.js" %}"></script>
+<script src="{% static "js/main.js" %}"></script>
 
-<script src="js/panel.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="{% static "js/panel.js" %}"></script>
+<script src="{% static "js/dashboard.js" %}""></script>
 <script>
     !function ($) {
         $(document).on("click","ul.nav li.parent > a > span.icon", function(){
