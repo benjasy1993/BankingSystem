@@ -11,6 +11,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from banking_system.models import UserProfileInfo
 
+import backend_client
+
 def home(request):
 	if request.method == 'GET':
 		return render(request, 'home.html')
@@ -66,7 +68,9 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-	return render(request, 'dashboard.html')
+
+	balances = backend_client.getAccountInfo(request.user.id)
+	return render(request, 'dashboard.html', {'balances': balances})
 
 @login_required
 def user_logout(request):
@@ -103,3 +107,16 @@ def profile(request):
 
 	return render(request, 'profile.html', {'update_form': update_form,
 											'profile_form': profile_form})
+
+
+@login_required
+def billpay(request):
+	return render(request, 'billpay_welcomepage.html')
+
+@login_required
+def billpay_addbill(request):
+	return render(request, 'billpay_selecttype.html')
+
+@login_required
+def billpay_company_w_acc(request):
+	return render(request, 'billpay_company_final_step.html')
