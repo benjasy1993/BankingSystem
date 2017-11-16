@@ -23,15 +23,13 @@
     margin-right: auto;
     margin-bottom: 20px;
 }
-.search {
-    border: 1px solid #ccc;
-    margin: 10px;
-    clear: both;
-}
+
 h3 {
     font-size: 110%;
     margin: 10px;
+    font-size: 24px;
 }
+
 .search-content{
     margin: 10px;
     line-height: 1.3em;
@@ -65,4 +63,51 @@ h3 {
     clear: both;
     padding-bottom: 15px;
     text-align: center;
+}
+
+.bp-p{
+    margin: 10px;
+    line-height: 1.3em;
+    clear: both;
+}
+.biller-list {
+    padding: 10px;
+}
+.modhead {
+    margin: 0;
+    position: relative;
+    display: none;
+}
+.modbody {
+    margin: 0;
+    padding: 0px 0 7px 0;
+}
+.help-link-cleared {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+}
+.row-fix {
+    padding-bottom: 10px;
+}
+.bp-span{
+    font-size: 85%;
+    padding-bottom: 3px;
+    display: block;
+    line-height: 1em;
+    font-weight: normal;
+}
+
+.para {
+    margin: 10px;
+    line-height: 1.3em;
+    clear: both;
+}
+
+a {
+    color: #369;
+    font-weight: bold;
+    text-decoration: none;
 }
