@@ -1,13 +1,33 @@
 package com.banking.prototype.models;
 
+import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "T_ACTIVITY")
+@Entity
+@Data
 public class Activity {
 
-    private BankAccount account;
+    @Id
+    @GeneratedValue
+    private long id;
 
-    private Transaction transaction;
+    private long bankAccountId;
+
+    private long transactionId;
 
     private String description;
 
-    private long balance;
+    private double balance;
+
+    public Activity(long bankAccountId, long transactionId, String description, double balance) {
+        this.bankAccountId = bankAccountId;
+        this.transactionId = transactionId;
+        this.description = description;
+        this.balance = balance;
+    }
 }

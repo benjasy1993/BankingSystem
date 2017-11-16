@@ -19,20 +19,49 @@ public class Transaction {
     @GeneratedValue
     private long transactionId;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private BankAccount from;
+    private long fromBankAccountId;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private BankAccount to;
+    private long toBankAccountId;
 
     private TransactionType type;
 
-    private int amount;
+    private double amount;
 
-    private Date date;
+    private java.sql.Date scheduledDate;
+
+    private Date completedDate;
 
     private TransactionStatus status;
 
+    public Transaction(long fromBankAccountId,
+                       long toBankAccountId,
+                       TransactionType type,
+                       double amount,
+                       java.sql.Date scheduledDate,
+                       TransactionStatus status) {
+
+        this.fromBankAccountId = fromBankAccountId;
+        this.toBankAccountId = toBankAccountId;
+        this.type = type;
+        this.amount = amount;
+        this.scheduledDate = scheduledDate;
+        this.status = status;
+    }
+
+    public Transaction(long fromBankAccountId,
+                       long toBankAccountId,
+                       TransactionType type,
+                       double amount,
+                       java.sql.Date scheduledDate,
+                       Date completedDate,
+                       TransactionStatus status) {
+
+        this.fromBankAccountId = fromBankAccountId;
+        this.toBankAccountId = toBankAccountId;
+        this.type = type;
+        this.amount = amount;
+        this.scheduledDate = scheduledDate;
+        this.completedDate = completedDate;
+        this.status = status;
+    }
 }
