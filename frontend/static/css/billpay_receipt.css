@@ -1,0 +1,312 @@
+
+.invoice-container {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+[contenteditable]:hover, input:hover, [contenteditable]:focus, input:focus {
+    background: rgba(241, 76, 76, .1);
+    outline: 2px solid #f14c4c;
+}
+.group:after, .row:after, .invoicelist-footer:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/**
+ * Small Grid
+ **/
+.invoice-row {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 0;
+    padding-left: 2rem;
+}
+.col, .logoholder, .me, .info, .bank, [class*="col-"] {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0 1rem;
+    min-height: 1px;
+}
+.col-4 {
+    width: 25%;
+}
+.col-3 {
+    width: 33.33%;
+}
+.col-2 {
+    width: 50%;
+}
+.col-2-4 {
+    width: 75%;
+}
+.col-1 {
+    width: 100%;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+a {
+    color: #f14c4c;
+    text-decoration: none;
+}
+p {
+    margin: 0;
+}
+.control-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #f14c4c;
+    color: white;
+    line-height: 4rem;
+    height: 4rem;
+}
+.control-bar .slogan {
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-right: 2rem;
+}
+.control-bar label {
+    margin-right: 1rem;
+}
+.control-bar a {
+    margin: 0;
+    padding: 0.5em 1em;
+    background: rgba(255, 255, 255, .8);
+}
+.control-bar a:hover {
+    background: rgba(255, 255, 255, 1);
+}
+.control-bar input {
+    border: none;
+    background: rgba(255, 255, 255, .2);
+    padding: 0.5rem 0;
+    max-width: 30px;
+    text-align: center;
+}
+.control-bar input:hover {
+    background: rgba(255, 255, 255, .3);
+}
+.hidetax .taxrelated {
+    display: none;
+}
+.showtax .notaxrelated {
+    display: none;
+}
+.hidedate .daterelated {
+    display: none;
+}
+.showdate .notdaterelated {
+    display: none;
+}
+/**
+ * HEADER
+ */
+.invoice-header {
+    margin: 1rem 0 0;
+    padding: 0 0 2rem 0;
+    border-bottom: 3pt solid #f14c4c;
+}
+.invoice-header p {
+    font-size: 0.9rem;
+}
+.invlice-header a {
+    color: #000;
+}
+.logo {
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    border: none;
+    fill: #f14c4c;
+}
+.logoholder {
+    width: 10%;
+}
+.me {
+    width: 30%;
+}
+.info {
+    width: 30%;
+}
+.bank {
+    width: 30%;
+}
+/**
+ * SECTION
+ */
+.invlice-section {
+    margin: 3rem 0 0;
+}
+.smallme {
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+    font-size: 0.9rem;
+}
+.client {
+    margin: 2rem 0 3rem 0;
+}
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    color: #f14c4c;
+}
+.details input {
+    display: inline;
+    margin: 0 0 0 0.5rem;
+    border: none;
+    width: 50px;
+    min-width: 0;
+    background: transparent;
+    text-align: left;
+}
+.rate:before, .price:before, .sum:before, .tax:before, #total_price:before, #total_tax:before {
+    content: '€';
+}
+/**
+ * INVOICELIST BODY
+ */
+.invoicelist-body {
+    padding-left: 4rem;
+    margin: 1rem;
+}
+.invoicelist-body table {
+    width: 80%;
+}
+.invoicelist-body thead {
+    text-align: left;
+    border-bottom: 2pt solid #666;
+}
+.invoicelist-body td, .invoicelist-body th {
+    position: relative;
+    padding: 2px;
+    font-size: x-small;
+    font-weight: bold;
+}
+.invoicelist-body td:nth-child(odd) {
+    vertical-align: 50%;
+}
+.invoicelist-body input {
+    display: inline;
+    margin: 0;
+    border: none;
+    width: 80%;
+    min-width: 0;
+    background: transparent;
+    text-align: left;
+}
+.invoicelist-body .control {
+    display: inline-block;
+    color: white;
+    background: #f14c4c;
+    padding: 3px 7px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.invoicelist-body .control:hover {
+    background: #f36464;
+}
+.invoicelist-body .newRow {
+    margin: 0.5rem 0;
+    float: left;
+}
+.invoicelist-body .removeRow {
+    display: none;
+    position: absolute;
+    top: 0.1rem;
+    bottom: 0.1rem;
+    left: -1.3rem;
+    font-size: 0.7rem;
+    border-radius: 3px 0 0 3px;
+    padding: 0.5rem;
+}
+/**
+ * INVOICE LIST FOOTER
+ */
+.invoicelist-footer {
+    margin: 4rem 0 0 5rem;
+}
+.invoicelist-footer table {
+    width: 25%;
+}
+.invoicelist-footer table td {
+    padding: 1rem 0 0 0;
+    text-align: right;
+}
+.invoicelist-footer table tr:nth-child(2) td {
+    padding-top: 0;
+}
+.invoicelist-footer table #total_price {
+    font-size: 2rem;
+    color: #f14c4c;
+}
+/**
+ * NOTE
+ */
+.note {
+    margin: 1rem;
+}
+.hidenote .note {
+    display: none;
+}
+.note h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+/**
+ * FOOTER
+ */
+footer {
+    display: block;
+    margin: 1rem 0;
+    padding: 1rem 0 0;
+}
+footer p {
+    font-size: 0.8rem;
+}
+/**
+ * PRINT STYLE
+ */
+@media print {
+    html {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+    body {
+        width: 100%;
+        border: none;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+    .control, .control-bar {
+        display: none !important;
+    }
+    [contenteditable]:hover, [contenteditable]:focus {
+        outline: none;
+    }
+}
+.invoice-font{
+    font-size: small;
+    font-weight: bold;
+
+}
