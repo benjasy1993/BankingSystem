@@ -10,4 +10,8 @@ urlpatterns = [
     url(r'^dashboard/$',views.dashboard,name='dashboard'),
     url(r'^logout/$',views.user_logout,name='logout'),
     url(r'^profile/$',views.profile,name='profile'),
+    url(r'^billpay/$',views.billpay,name='billpay'),
+    url(r'^billpay_addbill/$',views.billpay_addbill,name='billpay_addbill'),
+    url(r'^billpay_company_w_acc/$',views.billpay_company_w_acc,name='billpay_company_w_acc'),
+
 ]
