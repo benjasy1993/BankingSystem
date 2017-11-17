@@ -68,13 +68,9 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-<<<<<<< HEAD
 
 	balances = backend_client.getAccountInfo(request.user.id)
-=======
-	balances = backend_client.getAccountInfo(request.user.id)
 	print balances
->>>>>>> pending
 	return render(request, 'dashboard.html', {'balances': balances})
 
 @login_required
@@ -124,4 +120,30 @@ def billpay_addbill(request):
 
 @login_required
 def billpay_company_w_acc(request):
-	return render(request, 'billpay_company_final_step.html')
+	if request.method == 'GET':
+		return render(request, 'billpay_company_final_step.html')
+	else:
+		data = request.POST
+		billpay = dict()
+
+		print request.user.id
+		billpay['user_id']=str(request.user.id)
+		billpay['toAccountNum']=str(request.POST['accountNumber'])
+		billpay['routine']=str(request.POST['routingNumber'])
+		billpay['amount']=str(request.POST['amount'])
+		billpay_result = backend_client.billpay_company_w_acc(billpay['user_id'], billpay['toAccountNum'], billpay['routine'], billpay['amount'], data['date'])
+		print billpay_result
+
+		request.session['billpay_result'] = billpay_result
+		return HttpResponseRedirect(reverse('banking_system:billpay_company_receipt'))
+		# return render(request, 'billpay_company_final_step.html')
+		# return render(request, 'billpay_company_receipt.html')
+
+@login_required
+def billpay_company_addbill(request):
+	return render(request, 'billpay_company_receipt.html')
+
+@login_required
+def billpay_company_receipt(request):
+	print request.session['billpay_result']
+	return render(request, 'billpay_company_receipt.html')

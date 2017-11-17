@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^billpay/$',views.billpay,name='billpay'),
     url(r'^billpay_addbill/$',views.billpay_addbill,name='billpay_addbill'),
     url(r'^billpay_company_w_acc/$',views.billpay_company_w_acc,name='billpay_company_w_acc'),
-
+    url(r'^billpay_company_receipt/$',views.billpay_company_receipt,name='billpay_company_receipt'),
 ]
