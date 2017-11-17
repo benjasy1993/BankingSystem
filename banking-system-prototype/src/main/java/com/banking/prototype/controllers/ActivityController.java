@@ -32,21 +32,23 @@ public class ActivityController {
     }
 
     @RequestMapping(value = "/billpay", method = RequestMethod.GET)
-    public void billPay() {
-
+    public void billPay(@RequestParam("fromAccountId") Long fromAccountId,
+                        @RequestParam("toAccountId") Long toAccountId,
+                        @RequestParam("amount") Double amount,
+                        @RequestParam("scheduledDate") Date date) throws Exception{
+        service.billPay(fromAccountId, toAccountId, amount, date);
     }
 
     @RequestMapping(value = "/activities/list")
-    public Page<Activity> listActivities(@RequestParam("bankAccountId") Long bankAccountId,
+    public Page<Activity> listActivitiesByAccount(@RequestParam("bankAccountId") Long bankAccountId,
                                          @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE) Integer page,
                                          @RequestParam(value = "size", required = false, defaultValue = DEFAULT_SIZE) Integer size) {
         return service.listActivities(bankAccountId, new PageRequest(page, size));
     }
 
-    //internal use
-    @RequestParam(value = "/transactions/list")
-    public List<Transaction> listTransactions() {
-
+    @RequestMapping(value = "/activities/all")
+    public List<Activity> listAllActivities() {
+        return service.listAllActivities();
     }
 
 }

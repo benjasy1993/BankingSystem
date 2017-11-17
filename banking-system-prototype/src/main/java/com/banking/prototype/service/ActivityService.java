@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.List;
 
 @Service
 public class ActivityService {
@@ -28,11 +29,25 @@ public class ActivityService {
     private TransactionRepository transactionRepository;
 
     public void makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
+        makeTransfer(fromAccountId, toAccountId, amount, date, null);
+    }
+
+    public void billPay(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
+        makeTransfer(fromAccountId, toAccountId, amount, date, TransactionType.BILL_PAY);
+    }
+
+
+    private void makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
         BankAccount from = bankAccountRepository.findOne(fromAccountId);
         BankAccount to = bankAccountRepository.findOne(toAccountId);
 
         Transaction transaction;
-        TransactionType type = from.getRoutingNum().equals(to.getRoutingNum()) ? TransactionType.INTERNAL_TRANSFER : TransactionType.EXTERNAL_TRANSFER;
+        TransactionType type;
+        if (transactionType == null) {
+            type = from.getRoutingNum().equals(to.getRoutingNum()) ? TransactionType.INTERNAL_TRANSFER : TransactionType.EXTERNAL_TRANSFER;
+        } else {
+            type = transactionType;
+        }
 
         if (date.after(today())) {
             TransactionStatus status = TransactionStatus.PENDING;
@@ -50,11 +65,19 @@ public class ActivityService {
         transactionRepository.save(transaction);
 
         //save activities for both accounts
-        activityRepository.save(new Activity(from.getAccountId(), transaction.getTransactionId(), ));
+        activityRepository.save(
+                new Activity(
+                        from.getAccountId(),
+                        transaction.getTransactionId(),
+                        generateDescription(transaction),
+                        from.getBalance()));
 
-    }
-
-    public void billPay() {
+        activityRepository.save(
+                new Activity(
+                        to.getAccountId(),
+                        transaction.getTransactionId(),
+                        generateDescription(transaction),
+                        to.getBalance()));
 
     }
 
@@ -62,12 +85,28 @@ public class ActivityService {
         return activityRepository.getActivitiesByBankAccountId(bankAccountId, pageable);
     }
 
+    public List<Activity> listAllActivities() {
+        return activityRepository.findAll();
+    }
+
     private Date today() {
-        return (Date) new java.util.Date();
+        return new Date(new java.util.Date().getTime());
     }
 
-    private String generateDescription(Transaction transaction, ) {
-
+    private String generateDescription(Transaction transaction) {
+        String suffix = " from " + transaction.getFromBankAccountId() + " to " +
+                transaction.getToBankAccountId() + " with Transaction #" + transaction.getTransactionId();
+        switch (transaction.getType()) {
+            case BILL_PAY:
+                return "Bill payment" + suffix;
+            case EXTERNAL_TRANSFER:
+                return "External transfer" + suffix;
+            case INTERNAL_TRANSFER:
+                return "Internal transfer" + suffix;
+        }
+        return "Unknown transaction description with Transaction #" + transaction.getTransactionId();
     }
+
+
 
 }

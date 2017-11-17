@@ -1,6 +1,7 @@
 package com.banking.prototype.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Table
 @Entity
 @Data
+@NoArgsConstructor
 public class CompanyAccountInfo {
 
     @Id
@@ -22,8 +24,7 @@ public class CompanyAccountInfo {
 
     private String phoneNum;
 
-    @Embedded
-    private BankAccount account;
+    private long bankAccountId;
 
     private String address;
 
