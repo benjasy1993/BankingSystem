@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<section class="main-content">
+
+    <form method="post" action="" style=" margin-top:8em;margin-left: 21em;border: 1px solid #CCCCCC" class="col-xs-8" >
+        {% csrf_token %}
+        <div class="row mg-b"  style="background-color: #00B0E7;height: 50px;margin-bottom: 0px;padding-top: 10px">
+            <div class="col-xs-8">
+                <h3 class="no-margin" style="color:#FFFFFF">Schedule Internal Transfer Payment</h3>
+            </div>
+        </div>
+        <div class="row mg-b"  style="background-color: #FFF;height: 35px;margin-bottom: 0px;padding-top: 5px">
+            <div class="col-xs-8">
+                <h3 class="no-margin">  Step 1: Select a From Account</h3>
+            </div>
+        </div>
+        <div style="margin: 0px;padding: 10px">
+            &nbsp;&nbsp;&nbsp;  <span  style="font:700 20px/20px Arial">From :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select style="height: 28px" id="select1" name="account1">
+                <option value ="select">Select an Account</option>
+                <option value ="checking">Checking Account</option>
+                <option value="saving">Saving Account</option>
+                <option value="growing">Growing Accout</option>
+            </select>
+        </div>
+        <div class="row mg-b"  style="background-color: #FFF;height: 35px;margin-bottom: 0px;padding-top: 5px">
+            <div class="col-xs-8">
+                <h3 class="no-margin">Step 2: Select a To Account</h3>
+            </div>
+        </div>
+        <div style="margin: 0px;padding: 10px"  >
+            &nbsp;&nbsp;&nbsp;  <span  id="spanTo" style="font:700 20px/20px Arial;color: #808080">To :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select style="height: 28px;color: #808080" id="select2" disabled="disabled" name="account2">
+                <option value ="select">Select an Account</option>
+                <option value ="checking">Checking Account</option>
+                <option value="saving">Saving Account</option>
+                <option value="growing">Growing Accout</option>
+            </select>
+        </div>
+        <div class="row mg-b"  style="background-color: #FFF;height: 35px;margin-bottom: 0px;padding-top: 5px">
+            <div class="col-xs-8">
+                <h3 class="no-margin">Step 3: Enter Transfer Options</h3>
+            </div>
+        </div>
+        <div style="margin: 0px;padding: 10px; font:500 20px/20px Arial" id="AmountDate">
+            &nbsp;&nbsp;&nbsp;  <span  style="font:700 20px/20px Arial;color: #808080" id="spanDate">Date:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="date" name="date" id="date" style="height: 27px"  disabled="disabled" > <span>mm/dd/yyyy</span>
+            <br><br>
+            &nbsp;&nbsp;&nbsp;  <span id="spanAmount" style="font:700 20px/20px Arial;color: #808080">Amount:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            $<input type="text" name="amount" id="amount" disabled="disabled">
+            <br><br>
+            <input type="hidden" id="hid1">
+            <input type="hidden" id="hid2">
+            <input id="btn" type="submit" style="background-color: #C7D5E3;color:#2B568E;font:700 20px/20px Arial;height: 30px" value="Submit" hidden="hidden">&nbsp; &nbsp; <span id="mid" hidden="hidden">|</span> &nbsp; &nbsp; <a id="aa" href="#" hidden="hidden"> Cancel</a>
+        </div>
+
+    </form>
+</section>
+{% endblock %}

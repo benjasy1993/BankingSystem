@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-BACK_END_ENDPOINT = 'http://128.237.210.65:8002'
+BACK_END_ENDPOINT = 'http://localhost:8002'
 ACCOUNTS_URL = BACK_END_ENDPOINT + '/accounts'
 
 def setUpAccount(user_id):
@@ -58,3 +58,46 @@ def billpay_company_w_acc(user_id, toAccountNum, routine, amount, scheduledDate)
 
 #print getAccountInfo(1)
 #print billpay_company_w_acc(8, 3907153438, 2998444994, 20, "2017-11-16")
+# return a dict that contains ids of all accounts
+def getAccountBankId(user_id):
+    r = requests.get(url=BACK_END_ENDPOINT + '/accounts/info', params={'userId':user_id})
+    result = dict()
+    if r.text == '':
+        result['checking'] = 'pending'
+        result['saving'] = 'pending'
+        result['growing'] = 'pending'
+    else:
+        json = r.json()
+        result['checking'] = int(json['bankAccounts'][0]['accountId'])
+        result['saving'] = int(json['bankAccounts'][1]['accountId'])
+        result['growing'] = int(json['bankAccounts'][2]['accountId'])
+    return result
+
+def makeTransfer(from_account_id, to_account_id, date, amount):
+    result = dict()
+    r = requests.get(url = BACK_END_ENDPOINT + '/transfer', params={
+        'fromAccountId': from_account_id,
+        'toAccountId': to_account_id,
+        'scheduledDate': date,
+        'amount': amount
+    })
+    if r.text == '':
+        return None
+    else:
+        return r.json()
+
+
+def getActivities(bank_account_id):
+    r = requests.get(url = BACK_END_ENDPOINT + '/activities/list', params={
+        'bankAccountId': bank_account_id})
+    result = dict()
+    if r.text == '':
+        return None
+    else:
+        return r.json()
+
+# print getActivities()
+
+
+
+# print setUpAccount(8)

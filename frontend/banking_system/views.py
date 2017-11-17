@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from banking_system.models import UserProfileInfo
 
 import backend_client
+import datetime
 
 def home(request):
 	if request.method == 'GET':
@@ -25,27 +26,24 @@ def register(request):
 	registered = False
 
 	if request.method == 'POST':
-
+		print request.POST
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileInfoForm(data=request.POST)
-		# Check to see both forms are valid
+
 		if user_form.is_valid() and profile_form.is_valid():
-			# Save User Form to Database
 			user = user_form.save()
-			# Hash the password
 			user.set_password(user.password)
-			# Update with Hashed password
 			user.save()
+			backend_client.setUpAccount(user.id)
 			profile = profile_form.save(commit=False)
 			profile.user = user
-			profile.save()
-			# Registration Successful!
+			profile.save
 			registered = True
+			login(request, user)
+			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
-			# One of the forms was invalid if this else gets called.
 			print(user_form.errors, profile_form.errors)
 	else:
-			# Was not an HTTP post so we just render the forms as blank.
 		user_form = UserForm()
 		profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
@@ -68,9 +66,7 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-
 	balances = backend_client.getAccountInfo(request.user.id)
-	print balances
 	return render(request, 'dashboard.html', {'balances': balances})
 
 @login_required
@@ -147,3 +143,28 @@ def billpay_company_addbill(request):
 def billpay_company_receipt(request):
 	print request.session['billpay_result']
 	return render(request, 'billpay_company_receipt.html')
+
+@login_required
+def internal_transfer(request):
+	if request.method == 'POST':
+		data = request.POST
+
+		bank_ids = backend_client.getAccountBankId(request.user.id)
+		from_account_id = bank_ids[data['account1']]
+		to_account_id = bank_ids[data['account2']]
+		date = data['date']
+		amount = data['amount']
+
+		result = backend_client.makeTransfer(from_account_id, to_account_id, date, amount)
+		# backend_client.makeTransfer(data[''])
+		request.session['transfer_result']=result
+		return HttpResponseRedirect(reverse('banking_system:transfer_receipt'))
+	else:
+		return render(request, 'internal_transfer.html')
+
+@login_required
+def transfer_receipt(request):
+	result = request.session['transfer_result']
+	time = float(str(result['completedDate'])[:-3])
+	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
+	return render(request, 'transfer_receipt.html', {'result': result})

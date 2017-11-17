@@ -28,16 +28,16 @@ public class ActivityService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public void makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
-        makeTransfer(fromAccountId, toAccountId, amount, date, null);
+    public Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
+        return makeTransfer(fromAccountId, toAccountId, amount, date, null);
     }
 
-    public void billPay(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
-        makeTransfer(fromAccountId, toAccountId, amount, date, TransactionType.BILL_PAY);
+    public Transaction billPay(Long fromAccountId, Long toAccountId, Double amount, Date date) throws Exception{
+        return makeTransfer(fromAccountId, toAccountId, amount, date, TransactionType.BILL_PAY);
     }
 
 
-    private void makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
+    private Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
         BankAccount from = bankAccountRepository.findOne(fromAccountId);
         BankAccount to = bankAccountRepository.findOne(toAccountId);
 
@@ -78,7 +78,7 @@ public class ActivityService {
                         transaction.getTransactionId(),
                         generateDescription(transaction),
                         to.getBalance()));
-
+        return transaction;
     }
 
     public Page<Activity> listActivities(Long bankAccountId, Pageable pageable) {

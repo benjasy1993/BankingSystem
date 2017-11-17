@@ -1,0 +1,420 @@
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <title>Devonshire Lending LLC | Online Banking System User Dashboard</title>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        try {
+            if (!window.CloudFlare) {
+                var CloudFlare = [{
+                    verbose: 0,
+                    p: 0,
+                    byc: 0,
+                    owlid: "cf",
+                    bag2: 1,
+                    mirage2: 0,
+                    oracle: 0,
+                    paths: {
+                        cloudflare: "/cdn-cgi/nexp/dok2v=1613a3a185/"
+                    },
+                    atok: "1668c19642567e08c574f5d9458345a2",
+                    petok: "3285f1db20753df31d6fcdae6015a30e5a60a785-1419101748-1800",
+                    zone: "nyasha.me",
+                    rocket: "0",
+                    apps: {
+                        "ga_key": {
+                            "ua": "UA-50530436-1",
+                            "ga_bs": "2"
+                        }
+                    }
+                }];
+                CloudFlare.push({
+                    "apps": {
+                        "ape": "86d42e0b8c0027bb178361fce707fc15"
+                    }
+                });
+                ! function(a, b) {
+                    a = document.createElement("script"), b = document.getElementsByTagName("script")[0], a.async = !0, a.src = "//ajax.cloudflare.com/cdn-cgi/nexp/dok2v=919620257c/cloudflare.min.js", b.parentNode.insertBefore(a, b)
+                }()
+            }
+        } catch (e) {};
+        //]]>
+    </script>
+    <link rel="stylesheet" href="{% static "vendor/offline/theme.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/pace/theme.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/jvectormap/jquery-jvectormap-1.2.2.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/bxslider/jquery.bxslider.css" %}">
+
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-table.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.min.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/panel.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/skins/palette.1.css" %}" id="skin">
+    <link rel="stylesheet" href="{% static "css/fonts/style.1.css" %}" id="font">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "css/billpay_receipt.css" %}">
+    <link rel="stylesheet" href="{% static "css/billpay.css" %}">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{% static "vendor/modernizr.js" %}"></script>
+    <script type="text/javascript">
+
+        (function(b) {
+            (function(a) {
+                "__CF" in b && "DJS" in b.__CF ? b.__CF.DJS.push(a) : "addEventListener" in b ? b.addEventListener("load", a, !1) : b.attachEvent("onload", a)
+            })(function() {
+                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function(a) {
+                    _gaq.push(["_trackSocial", "facebook", "like", a])
+                }), FB.Event.subscribe("edge.remove", function(a) {
+                    _gaq.push(["_trackSocial", "facebook", "unlike", a])
+                }), FB.Event.subscribe("message.send", function(a) {
+                    _gaq.push(["_trackSocial", "facebook", "send", a])
+                }));
+                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function(a) {
+                    if (a) {
+                        var b;
+                        if (a.target && a.target.nodeName == "IFRAME") a: {
+                            if (a = a.target.src) {
+                                a = a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);
+                                b = 0;
+                                for (var c; c = a[b]; ++b)
+                                    if (c.indexOf("url") === 0) {
+                                        b = unescape(c.split("=")[1]);
+                                        break a
+                                    }
+                            }
+                            b = void 0
+                        }
+                        _gaq.push(["_trackSocial", "twitter", "tweet", b])
+                    }
+                })
+            })
+        })(window);
+        /* ]]> */
+    </script>
+</head>
+
+<body>
+    <div class="app" data-sidebar="locked">
+
+        <header class="header header-fixed navbar">
+            <div class="brand" style="background-color: red">
+                <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
+                <a href="{% url 'banking_system:dashboard' %}" class="navbar-brand">
+                    <i class="fa fa-stop mg-r-sm"></i>
+                    <span class="heading-font">Devonshire <b>OBS</b></span>
+                </a>
+            </div>
+            <form class="navbar-form navbar-left hidden-xs" role="search">
+                <div class="form-group">
+                    <button class="btn no-border no-margin bg-none no-pd-l" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input type="text" class="form-control no-border no-padding search" placeholder="Search">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right off-right">
+                <li class="notifications dropdown hidden-xs">
+                    <a href="javascript:;" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i>
+                        <div class="badge badge-top bg-danger animated flash">3</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right animated slideInRight">
+                        <div class="panel bg-white no-border no-margin">
+                            <div class="panel-heading no-radius">
+                                <small><b>Notifications</b></small>
+                                <small class="pull-right"><a href="javascript:;" class="mg-r-xs">mark as read</a>&#8226;<a href="javascript:;" class="fa fa-cog mg-l-xs"></a></small>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="javascript:;">
+                                        <span class="pull-left mg-t-xs mg-r-md">
+                                            <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x text-warning"></i>
+                                            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </span>
+                                        <div class="m-body show pd-t-xs">
+                                            <span>Payment Sucessful</span>
+                                            <div class="progress progress-xs mg-t-xs mg-b-xs">
+                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                </div>
+                                            </div>
+                                            <small>Notified 23 minutes ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="panel-footer no-border">
+                                <a href="javascript:;">See all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="quickmenu">
+                    <a href="javascript:;" data-toggle="dropdown">
+                        <img src="{% static 'img/avatar.jpg' %}" class="avatar pull-left img-circle" alt="Option" title="user">
+                        <i class="caret mg-l-xs hidden-xs no-margin"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
+                        <li>
+                            <a href="javascript:;">
+                                <div class="pd-t-sm">
+                                    {{ user.username }}
+                                    <br>
+                                    <small class="text-muted">{{ user.email }}</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="profile.html">Settings</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Notifications<div class="badge bg-danger pull-right">3</div></a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Help ?</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{% url 'banking_system:logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+
+        <section class="layout">
+            <aside class="sidebar canvas-left">
+                <nav class="main-navigation">
+                    <ul>
+                        <!-- <li class="active">
+                            <a href="{% url 'banking_system:dashboard' %}">
+                                <i class="fa fa-coffee"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li> -->
+                        <li class="dropdown show-on-hover">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-h"></i>
+                                <span>Account</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'banking_system:dashboard' %}">
+                                        <span>Account Overview</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms.html">
+                                        <span>Statements & Documents</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="calendar.html">
+                                        <span>Alerts</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="calendar.html">
+                                        <span>My Portfolio</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown show-on-hover">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span>Bill Pay</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'banking_system:billpay' %}">
+                                        <span>Bill Pay Center</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal.html">
+                                        <span>Payment Activity</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal_boxed.html">
+                                        <span>Manage Payment Accounts</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown show-on-hover">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span>Transfer</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'banking_system:internal_transfer' %}">
+                                        <span>Between My Accounts</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal.html">
+                                        <span>Send Money to Someone</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal_boxed.html">
+                                        <span>Receive Money</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown show-on-hover">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span>Loan</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="boxed.html">
+                                        <span>Display My Loan</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal.html">
+                                        <span>Apply for a Loan</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="horizontal_boxed.html">
+                                        <span>Loan Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown show-on-hover">
+                            <a href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-file"></i>
+                                <span>User Settings</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'banking_system:profile' %}">
+                                        <span>Update My Contact Information</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="profile.html">
+                                        <span>Change My Login Password</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="invoice.html">
+                                        <span>Change My Transaction Password</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="changelog.html">
+                                <i class="fa fa-info"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            {% block body_block %}
+            {% endblock %}
+
+        </section>
+    </div>
+
+    <script src="{% static "vendor/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+    <script src="{% static "vendor/jquery.easing.min.js" %}"></script>
+    <script src="{% static "vendor/jquery.placeholder.js" %}"></script>
+    <script src="{% static "vendor/fastclick.js" %}"></script>
+
+    <script src="{% static "vendor/moment.js" %}"></script>
+    <script src="{% static "vendor/skycons.js" %}"></script>
+    <script src="{% static "vendor/jquery.blockUI.js" %}"></script>
+    <script src="{% static "vendor/raphael.min.js" %}"></script>
+    <script src="{% static "vendor/morris/morris.js" %}"></script>
+    <script src="{% static "vendor/switchery/switchery.js" %}"></script>
+    <script src="{% static "vendor/jquery.slimscroll.js" %}"></script>
+    <script src="{% static "vendor/bxslider/jquery.bxslider.min.js" %}"></script>
+    <script src="{% static "vendor/offline/offline.min.js" %}"></script>
+    <script src="{% static "vendor/pace/pace.min.js" %}"></script>
+
+
+    <script src="{% static "js/off-canvas.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+
+    <script src="{% static "js/panel.js" %}"></script>
+    <script src="{% static "js/dashboard.js" %}"></script>
+    <script>
+        !function ($) {
+            $(document).on("click","ul.nav li.parent > a > span.icon", function(){
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+    <script>
+        var select1 = document.getElementById("select1");
+        var select2 = document.getElementById("select2");
+        select1.onchange = function fn() {
+            var oppArr1=select1.children;
+            for(var i=oppArr1.length-1;i>=0;i--){
+                if(oppArr1[i].selected==true){
+                    select2.disabled = false;
+                    select2.style.color="#000000";
+                    document.getElementById("hid1").value=oppArr1[i].value;
+                    document.getElementById("spanTo").style.color="#000000";
+                    select2.remove(i);
+                }
+            }
+        }
+        select2.onchange = function fn(){
+            var oppArr2=select2.children;
+            for(var i=oppArr2.length-1;i>=0;i--){
+                if(oppArr2[i].selected==true){
+                    document.getElementById("hid2").value=oppArr2[i].value;
+                    document.getElementById("spanAmount").style.color="#000000";
+                    document.getElementById("spanDate").style.color="#000000";
+                    document.getElementById("btn").hidden=false;
+                    document.getElementById("aa").hidden=false;
+                    document.getElementById("date").disabled=false;
+                    document.getElementById("amount").disabled=false;
+                }
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

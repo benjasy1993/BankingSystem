@@ -64,7 +64,12 @@ public class AccountService {
     }
 
     public List<CompanyAccountInfo> getAllBillers() {
-        return companyAccountRepository.findAll();
+
+        List<CompanyAccountInfo> list = companyAccountRepository.findAll();
+        list.forEach(info -> {
+            info.setBankAccount(bankAccountRepository.findOne(info.getBankAccountId()));
+        });
+        return list;
     }
 
     public void uploadBillers(List<CompanyAccountInfo> list) {

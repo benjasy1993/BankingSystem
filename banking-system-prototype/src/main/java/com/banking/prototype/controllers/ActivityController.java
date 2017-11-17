@@ -24,19 +24,19 @@ public class ActivityController {
     private static final String DEFAULT_SIZE = "10";
 
     @RequestMapping(value = "/transfer", method = RequestMethod.GET)
-    public void transfer(@RequestParam("fromAccountId") Long fromAccountId,
+    public Transaction transfer(@RequestParam("fromAccountId") Long fromAccountId,
                          @RequestParam("toAccountId") Long toAccountId,
                          @RequestParam("amount") Double amount,
                          @RequestParam("scheduledDate") Date date) throws Exception{
-        service.makeTransfer(fromAccountId, toAccountId, amount, date);
+        return service.makeTransfer(fromAccountId, toAccountId, amount, date);
     }
 
     @RequestMapping(value = "/billpay", method = RequestMethod.GET)
-    public void billPay(@RequestParam("fromAccountId") Long fromAccountId,
+    public Transaction billPay(@RequestParam("fromAccountId") Long fromAccountId,
                         @RequestParam("toAccountId") Long toAccountId,
                         @RequestParam("amount") Double amount,
                         @RequestParam("scheduledDate") Date date) throws Exception{
-        service.billPay(fromAccountId, toAccountId, amount, date);
+        return service.billPay(fromAccountId, toAccountId, amount, date);
     }
 
     @RequestMapping(value = "/activities/list")

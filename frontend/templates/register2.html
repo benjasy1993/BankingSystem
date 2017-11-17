@@ -106,13 +106,14 @@
                         <div class="container col-md-12" style="position: relative; float: left">
 
                             <form name="verify-enroll-account-form" id="VerifyEnrollAccountForm" class="form-horizontal" action=" " method="post"  id="contact_form">
+                                {% csrf_token %}
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" style="text-align: left">User ID</label>
+                                        <label class="col-md-2 control-label" style="text-align: left">Username</label>
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input  name="user_id" placeholder="User ID" class="form-control"  type="text">
+                                                <input  name="username" placeholder="Username" class="form-control"  type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -253,8 +254,8 @@
                                     </div> -->
 
                                 </fieldset>
-                                <a href="enroll_step2.html" onClick="$('#VerifyEnrollAccountForm').submit();" class="btn-bofa btn-bofa-small btn-bofa-blue" id="passcode-verify-submit" name="passcode-verify-submit" role="button"><span> Register</span></a>
 
+                                <input type="submit" class="btn-bofa btn-bofa-small btn-bofa-blue" value="Register" hidden="hidden"> </input>
                                 <div class="clearboth"></div>
                                 <p class="mtop-30"></p>
                             </form>

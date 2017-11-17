@@ -1,6 +1,7 @@
 package com.banking.prototype.repositories;
 
 import com.banking.prototype.models.BankAccount;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
