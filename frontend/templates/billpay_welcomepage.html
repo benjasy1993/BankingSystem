@@ -168,7 +168,7 @@
             </li>
             <li class="quickmenu">
                 <a href="javascript:;" data-toggle="dropdown">
-                    <img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="user" title="user">
+                    <img src="{% static "img/avatar.jpg" %}" class="avatar pull-left img-circle" alt="user" title="user">
                     <i class="caret mg-l-xs hidden-xs no-margin"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
@@ -441,29 +441,29 @@
     </section>
 </div>
 
-<script src="vendor/jquery-1.11.1.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="vendor/jquery.easing.min.js"></script>
-<script src="vendor/jquery.placeholder.js"></script>
-<script src="vendor/fastclick.js"></script>
+<script src="{% static "vendor/jquery-1.11.1.min.js" %}"></script>
+<script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+<script src="{% static "vendor/jquery.easing.min.js" %}"></script>
+<script src="{% static "vendor/jquery.placeholder.js" %}"></script>
+<script src="{% static "vendor/fastclick.js" %}"></script>
 
-<script src="vendor/moment.js"></script>
-<script src="vendor/skycons.js"></script>
-<script src="vendor/jquery.blockUI.js"></script>
-<script src="vendor/raphael.min.js"></script>
-<script src="vendor/morris/morris.js"></script>
-<script src="vendor/switchery/switchery.js"></script>
-<script src="vendor/jquery.slimscroll.js"></script>
-<script src="vendor/bxslider/jquery.bxslider.min.js"></script>
-<script src="vendor/offline/offline.min.js"></script>
-<script src="vendor/pace/pace.min.js"></script>
+<script src="{% static "vendor/moment.js" %}"></script>
+<script src="{% static "vendor/skycons.js" %}"></script>
+<script src="{% static "vendor/jquery.blockUI.js" %}"></script>
+<script src="{% static "vendor/raphael.min.js" %}"></script>
+<script src="{% static "vendor/morris/morris.js" %}"></script>
+<script src="{% static "vendor/switchery/switchery.js" %}"></script>
+<script src="{% static "vendor/jquery.slimscroll.js" %}"></script>
+<script src="{% static "vendor/bxslider/jquery.bxslider.min.js" %}"></script>
+<script src="{% static "vendor/offline/offline.min.js" %}"></script>
+<script src="{% static "vendor/pace/pace.min.js" %}"></script>
 
 
-<script src="js/off-canvas.js"></script>
-<script src="js/main.js"></script>
+<script src="{% static "js/off-canvas.js" %}"></script>
+<script src="{% static "js/main.js" %}"></script>
 
-<script src="js/panel.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="{% static "js/panel.js" %}"></script>
+<script src="{% static "js/dashboard.js" %}""></script>
 <script>
     !function ($) {
         $(document).on("click","ul.nav li.parent > a > span.icon", function(){

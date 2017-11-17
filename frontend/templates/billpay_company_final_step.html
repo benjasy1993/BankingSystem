@@ -1,6 +1,6 @@
 <!doctype html>
 {% load staticfiles %}
-<html class="no-js" lang="">
+<html class="no-js" lang="en-EN">
 
 <head>
 
@@ -205,7 +205,7 @@
             <nav class="main-navigation">
                 <ul>
                     <li class="active">
-                        <a href="user.html">
+                        <a href="{% url 'banking_system:dashboard' %}">
                             <i class="fa fa-coffee"></i>
                             <span>Dashboard</span>
                         </a>
@@ -373,16 +373,8 @@
                                     <p class="bp-p">We found a match for AAA Auto Club South - Membership. Please enter the additional information for this company to ensure that your payment is properly credited.</p>
                                     <p></p>
                                     <p class="row-fix para">
-                                    <label class="para col-xs-3" for="billName">* Biller Name<span class="bp-span">As it appears on  bill</span></label>
-                                    <input name="billName" id="billName" type="text" value="" maxlength="32" size="36">
-                                    </p>
-                                    <p class="row-fix para">
                                     <label class="para col-xs-3" for="accountNumber">* Account Number<span class="bp-span">As it appears on  bill</span></label>
                                     <input name="accountNumber" id="accountNumber" type="text" value="" maxlength="32" size="36">
-                                    </p>
-                                    <p class="row-fix para">
-                                    <label class="para col-xs-3" for="acctConf">* Confirm Account Number</label>
-                                    <input name="acctConf" type="text" id="acctConf" value="" size="36" maxlength="32">
                                     </p>
 
                                     <p class="last-row para" id="sp_routine">
@@ -393,26 +385,29 @@
                                         <label class="para col-xs-3" for="a">* Amount</label>
                                         <input name="a" type="text" id="a" size="30" maxlength="30" value="" onkeypress="return numbersonly(this, event)">
                                     </p>
+                                    <p class="row-fix para">
+                                    <label class="para col-xs-3" for="acctConf">* Schedule Date</label>
+                                    <input name="acctConf" type="date" id="date" value="">
+                                    </p>
                                     <script language="JavaScript" type="text/javascript">
                                                             <!--!
                                                                 autojump('z', 'z4', 5, 'addpayee');
                                                             //-->
                                                         </script>
 
-                                                        <ul class="search-buttons" style="float: none">
-                                                            <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="javascript:submitMPChgPayPlanForm('Save Changes');">Add Bill</a></li>
-                                                            <li class="btn btn-default" style="font-weight: bold"><a href="javascript:goBackToQuickAddPage();">Cancel</a></li>
-                                                        </ul>
-                                                    </form>
-                                                </div>
-                                                <div class="brc">
-                                                    <div class="blc"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                          </div>
+                                    <ul class="search-buttons" style="float: none">
+                                      <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="{% url 'banking_system:billpay_company_receipt' %}">Add Bill</a></li>
+                                      <li class="btn btn-default" style="font-weight: bold"><a href="{% url 'banking_system:dashboard' %}">Cancel</a></li>
+                                    </ul>
+                            </form>
+                      </div>
+                      <div class="brc">
+                          <div class="blc"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
         </section>
