@@ -46,6 +46,23 @@ public class AccountService {
         bankAccountRepository.save(account);
     }
 
+    public CompanyAccountInfo searchBillerBankAccount(String routingNum, String accountNum) {
+        CompanyAccountInfo info = null;
+        BankAccount account = bankAccountRepository.findFirstByRoutingNumAndAccountNum(routingNum, accountNum);
+        if (account == null) {
+            return info;
+        }
+        info = companyAccountRepository.findFirstByBankAccountId(account.getAccountId());
+        if (info != null) {
+            info.setBankAccount(account);
+        }
+        return info;
+    }
+
+    public void uploadCompanyAccountInfo(List<CompanyAccountInfo> list) {
+        companyAccountRepository.save(list);
+    }
+
     public List<CompanyAccountInfo> getAllBillers() {
         return companyAccountRepository.findAll();
     }

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table
 @Entity
@@ -25,6 +26,9 @@ public class CompanyAccountInfo {
     private String phoneNum;
 
     private long bankAccountId;
+
+    @Transient
+    private BankAccount bankAccount;
 
     private String address;
 

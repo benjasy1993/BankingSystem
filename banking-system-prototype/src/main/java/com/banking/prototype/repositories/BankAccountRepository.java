@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
     List<BankAccount> findAllByInfo_UserId(Long userId);
+
+    BankAccount findFirstByRoutingNumAndAccountNum(String routingNum, String accountNum);
 }

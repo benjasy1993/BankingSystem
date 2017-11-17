@@ -59,4 +59,16 @@ public class AccountController {
                                  @RequestParam(name = "amount") Double amount){
         service.addMoney(accountId, amount);
     }
+
+    @RequestMapping(value = "/billers/search", method = RequestMethod.GET)
+    public CompanyAccountInfo getBillerAccount(@RequestParam(name = "routingNum") String routingNum,
+                                        @RequestParam(name = "accountNum") String accountNum) {
+        return service.searchBillerBankAccount(routingNum, accountNum);
+    }
+
+    @RequestMapping(value = "/billers/upload", method = RequestMethod.POST)
+    public void uploadCompanyAccountInfo(@RequestBody List<CompanyAccountInfo> list) {
+        service.uploadCompanyAccountInfo(list);
+    }
+
 }
