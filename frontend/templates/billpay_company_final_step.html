@@ -342,24 +342,13 @@
                                       <h2>Add Biller Information</h2>
                                 </div>
                                 <div class="modbody">
-                                  <p class="help-link-cleared"><a href="wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt" onclick="this.href='javascript:popRemoteSmall(\'wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt\')';this.target='';" title="">Tell me about adding bills ...</a></p>
+                                  <p class="help-link-cleared"><a href="" onclick="this.href='javascript:popRemoteSmall(\'wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt\')';this.target='';" title="">Tell me about adding bills ...</a></p>
                                   <div id="genErrors"></div>
-                                  <script type="text/javascript">
-                                                        <!--!
-                                                            function submitForm(value) {
-                                                                document.addpayee.buttonClicked.value = value;
-                                                                document.addpayee.submit();
-                                                            }
 
-                                                        function goBackToAddPage() {
-                                                            window.location.href = "wps?rq=qaadd&sp=FI05&oss=4ce010a08bb78ed526543e023ce25d0e";
-                                                        }
-                                                        // -->
-                                                    </script>
-
-                              <form action="wps" method="post" name="addpayee" autocomplete="off">
+                              <form action="" method="post" name="addpayee" autocomplete="off">
+                                  {% csrf_token %}
                                   <input type="hidden" name="buttonClicked">
-                                    <input type="hidden" name="rq" value="pyposack">
+                                    <!-- <input type="hidden" name="rq" value="pyposack">
                                     <input type="hidden" name="MrchNum" value="3233">
                                     <input type="hidden" name="name" value="AAA Auto Club South - Membership">
                                     <input type="hidden" name="type" value="withAcct">
@@ -368,36 +357,35 @@
                                     <input type="hidden" name="cleanBillerName" value="AAA Auto Club South - Membership">
                                     <input type="hidden" name="uniqueParamName" value="97c822c89105fef8bb50c61f002fd777a80077bbccb7c6962610175977a664cf3b1deed1bfada4102fa8d9497e3513484cdb55b2f235be291919fd74b910814e03a499ce27c6581829502c569fa7ea5e">
                                     <input type="hidden" name="sp" value="FI05">
-                                    <input type="hidden" name="oss" value="4ce010a08bb78ed526543e023ce25d0e">
+                                    <input type="hidden" name="oss" value="4ce010a08bb78ed526543e023ce25d0e"> -->
 
-                                    <p class="bp-p">We found a match for AAA Auto Club South - Membership. Please enter the additional information for this company to ensure that your payment is properly credited.</p>
-                                    <p></p>
+                                    <!-- <p class="bp-p">We found a match for AAA Auto Club South - Membership. Please enter the additional information for this company to ensure that your payment is properly credited.</p>
+                                    <p></p> -->
                                     <p class="row-fix para">
                                     <label class="para col-xs-3" for="accountNumber">* Account Number<span class="bp-span">As it appears on  bill</span></label>
                                     <input name="accountNumber" id="accountNumber" type="text" value="" maxlength="32" size="36">
                                     </p>
 
                                     <p class="last-row para" id="sp_routine">
-                                    <label class="para col-xs-3" for="r">* Routine Number</label>
-                                    <input name="r" type="text" id="r" size="10" maxlength="10" value="" onkeypress="return numbersonly(this, event)">
+                                    <label class="para col-xs-3" for="routingNumber">* Routine Number</label>
+                                    <input name="routingNumber" type="text" id="routingNumber" size="10" maxlength="32" value="" onkeypress="return numbersonly(this, event)">
                                     </p>
                                     <p class="last-row para" id="sp_amount">
-                                        <label class="para col-xs-3" for="a">* Amount</label>
-                                        <input name="a" type="text" id="a" size="30" maxlength="30" value="" onkeypress="return numbersonly(this, event)">
+                                        <label class="para col-xs-3" for="amount">* Amount</label>
+                                        <input name="amount" type="text" id="amount" size="30" maxlength="30" value="" onkeypress="return numbersonly(this, event)">
                                     </p>
                                     <p class="row-fix para">
-                                    <label class="para col-xs-3" for="acctConf">* Schedule Date</label>
-                                    <input name="acctConf" type="date" id="date" value="">
+                                    <label class="para col-xs-3" for="date">* Schedule Date</label>
+                                    <input name="date" type="date" id="date" value="">
                                     </p>
                                     <script language="JavaScript" type="text/javascript">
                                                             <!--!
                                                                 autojump('z', 'z4', 5, 'addpayee');
                                                             //-->
                                                         </script>
-
                                     <ul class="search-buttons" style="float: none">
-                                      <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="{% url 'banking_system:billpay_company_receipt' %}">Add Bill</a></li>
-                                      <li class="btn btn-default" style="font-weight: bold"><a href="{% url 'banking_system:dashboard' %}">Cancel</a></li>
+                                      <input type="submit" class="btn" style="font-weight: bold; background-color: #ffa500;" value="Add Bill"></input>
+                                      <input class="btn btn-default" style="font-weight: bold" value="cancel" href="{% url 'banking_system:dashboard' %}"></input>
                                     </ul>
                             </form>
                       </div>

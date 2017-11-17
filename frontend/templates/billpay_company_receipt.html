@@ -382,9 +382,9 @@
                                           Please review these details:
                                       </p>
                                       <p class="client invoice-font">
-                                          Payment amount:<span style="font-weight: normal"> $ 1,000</span><br>
-                                          Bill number: <span style="font-weight: normal">179010101</span><br>
-                                          Payment sent by Devenshire on: <span style="font-weight: normal">11/16/2017</span>
+                                          Payment amount:<span style="font-weight: normal"> $ {{ request.session.billpay_result.amount }}</span><br>
+                                          Payment number: <span style="font-weight: normal">{{ request.session.billpay_result.transNum }}</span><br>
+                                          Payment sent by Devenshire on: <span style="font-weight: normal">{{ request.session.billpay_result.completedDate }}</span>
                                       </p>
                                   </div>
                                   <div style="height: 30px; width: 95%; background-color: #f14c4c">
@@ -438,27 +438,27 @@
                                       <tbody>
                                       <tr>
                                           <td class="col-xs-1">Biller name</td>
-                                          <td class="col-xs-2">XXX XXXX</td>
+                                          <td class="col-xs-2">{{ request.session.billpay_result.companyName }}</td>
                                       </tr>
                                       <tr>
                                           <td class="col-xs-1">Biller account number</td>
-                                          <td class="col-xs-2">29292910</td>
+                                          <td class="col-xs-2">{{ request.session.billpay_result.toAccountNum }}</td>
                                       </tr>
                                       <tr>
                                           <td >Payment amount</td>
-                                          <td class="col-xs-1">$ 1,000</td>
+                                          <td class="col-xs-1">$ {{ request.session.billpay_result.amount }}</td>
                                       </tr>
                                       <tr>
                                           <td class="col-xs-1">Send ON date</td>
-                                          <td class="col-xs-2">11/16/2017</td>
+                                          <td class="col-xs-2">{{ request.session.billpay_result.sendOnDate }}</td>
                                       </tr>
                                       <tr>
                                           <td class="col-xs-1">Expected arrival date</td>
-                                          <td class="col-xs-2">11/20/2017</td>
+                                          <td class="col-xs-2">{{ request.session.billpay_result.completedDate }}</td>
                                       </tr>
                                       <tr>
                                           <td class="col-xs-1">Payment number</td>
-                                          <td class="col-xs-2">121209310</td>
+                                          <td class="col-xs-2">{{ request.session.billpay_result.transNum }}</td>
                                       </tr>
                                       </tbody>
                                   </table>
@@ -519,7 +519,7 @@
 <script src="{% static "js/main.js" %}"></script>
 
 <script src="{% static "js/panel.js" %}"></script>
-<script src="{% static "js/dashboard.js" %}""></script>
+<script src="{% static "js/dashboard.js" %}"></script>
 <script>
     !function ($) {
         $(document).on("click","ul.nav li.parent > a > span.icon", function(){
