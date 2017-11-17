@@ -24,7 +24,7 @@ public class AccountInfo {
 
     @Id
     @Column(name = "USER_ID")
-    private int userId;
+    private long userId;
 
     @OneToMany(mappedBy = "info", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<BankAccount> bankAccounts;

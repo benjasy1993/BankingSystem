@@ -50,7 +50,7 @@ def register(request):
 		profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
 			# back to the registration.html file page.
-	return render(request, 'register.html', {'user_form': user_form,
+	return render(request, 'register2.html', {'user_form': user_form,
 											   	 'profile_form': profile_form,
 											   	 'registered': registered})
 
@@ -68,8 +68,13 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+<<<<<<< HEAD
 
 	balances = backend_client.getAccountInfo(request.user.id)
+=======
+	balances = backend_client.getAccountInfo(request.user.id)
+	print balances
+>>>>>>> pending
 	return render(request, 'dashboard.html', {'balances': balances})
 
 @login_required

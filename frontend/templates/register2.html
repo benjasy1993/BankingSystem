@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+{% load staticfiles %}
 <html class="no-js" lang="">
 
 <head>
@@ -19,7 +19,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www2.bac-assets.com/homepage/spa-assets/bundles/7a69d802.css">
 
-    <link rel="stylesheet" href="css/fonts/style.1.css" id="font">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -171,7 +170,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="col-md-2 control-label" style="text-align: left">City</label>
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
@@ -251,11 +250,11 @@
                                                 <input name="zip" placeholder="Zip Code" class="form-control"  type="text">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </fieldset>
                                 <a href="enroll_step2.html" onClick="$('#VerifyEnrollAccountForm').submit();" class="btn-bofa btn-bofa-small btn-bofa-blue" id="passcode-verify-submit" name="passcode-verify-submit" role="button"><span> Register</span></a>
-                                <a class="btn-bofa btn-bofa-small btn-bofa-gray show-cancel-enroll-modal" data-toggle="modal" data-target="#cancel-enroll-modal" name="cancel-passcode-verify-submit" role="button"><span> Cancel</span></a>
+
                                 <div class="clearboth"></div>
                                 <p class="mtop-30"></p>
                             </form>
@@ -263,38 +262,7 @@
                     </div><!-- /.container -->
                 </div>
 
-                <div class="modal fade" id="cancel-enroll-modal" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <h4 class="modal-header" id="ui-id-1">Are you sure you want to cancel enrollment?</h4>
-                            <div class="modal-body" id="infotext"><span style="font-size: x-small" id="infoNonChatText">Thank you for considering Online Banking. If you need additional assistance, please <a href="https://www.bankofamerica.com/contactus/contactus.go?topicId=online-banking-customer-service" name="cancel_enroll_contact_us" target="_self">contact us</a>..</span>
-                            </div>
-                            <p class="modal-body">If you decide not to continue, please take a moment to tell us why.
-                                <br class="modal-body">We appreciate your feedback.</p>
-                            <form name="cancel-enrollment-form" id="CancelEnrollmentForm" method="post" action="/login/enroll/cancelOlbEnroll.go">
-                                <select style="margin-left: 25px" id="selectCancelReason" name="cancelReason">
-                                    <option value="Select Reason" selected="selected">Select Reason</option>
-                                    <option value="I don't have time now.">- I don't have time now.</option>
-                                    <option value="The system could not verify my information.">- The system could not verify my information.</option>
-                                    <option value="I decided not to enroll">- I decided not to enroll</option>
-                                    <option value="I dont have all of the required information">- I dont have all of the required information</option>
-                                    <option value="I need time to review the Service Agreement.">- I need time to review the Service Agreement.</option>
-                                    <option value="I don't agree to the Electronic Communications Dis">- I don't agree to the Electronic Communications Disclosure</option>
-                                    <option value="I'm not a Bank of America customer">- I'm not a Bank of America customer</option>
-                                    <option value="I'm a Military Banking customer">- I'm a Military Banking customer</option>
-                                    <option value="I don't want to enter my Social Security number">- I don't want to enter my Social Security number</option>
-                                    <option value="I don't want to enter my ATM PIN">- I don't want to enter my ATM PIN</option>
-                                </select>
-                            </form>
-                            <div class="buttons">
-                                <a name="modal_close" class="button-common btn-bofa btn-bofa-small btn-bofa-blue" style="color:white" href="home.html"><span>Yes, cancel now</span></a>
-                                <a name="modal_cancel" data-dismiss="modal"  class="button-common btn-bofa btn-bofa-small btn-bofa-gray" href="javascript:void(0);"> <span>No, continue enrolling</span> </a>
-                                <div class="clearboth"></div>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="right-column no-print"></div>
             <div class="clearboth"></div>

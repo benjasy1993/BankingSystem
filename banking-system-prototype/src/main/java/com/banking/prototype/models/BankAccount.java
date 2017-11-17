@@ -1,14 +1,12 @@
 package com.banking.prototype.models;
 
-import com.banking.prototype.utils.AccountUtility;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,7 +22,7 @@ public class BankAccount {
     @Id
     @GeneratedValue
     @Column(name = "ACCOUNT_ID")
-    private int accountId;
+    private long accountId;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
@@ -38,7 +36,7 @@ public class BankAccount {
     private String routingNum;
 
     @Column(name = "BALANCE")
-    private long balance;
+    private double balance;
 
     @Column(name = "ACCOUNT_TYPE")
     private BankAccountType type;

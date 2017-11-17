@@ -1,38 +1,69 @@
 package com.banking.prototype.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Data
 @Table(name = "T_TRANSACTION")
 @Entity
+@NoArgsConstructor
 public class Transaction {
 
     @Id
     @GeneratedValue
     private long transactionId;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private BankAccount from;
+    private long fromBankAccountId;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private BankAccount to;
+    private long toBankAccountId;
 
     private TransactionType type;
 
-    private int amount;
+    private double amount;
 
-    private Date date;
+    @JsonFormat(pattern = "YYYY-MM-dd")
+    private java.sql.Date scheduledDate;
+
+    private Date completedDate;
 
     private TransactionStatus status;
 
+    public Transaction(long fromBankAccountId,
+                       long toBankAccountId,
+                       TransactionType type,
+                       double amount,
+                       java.sql.Date scheduledDate,
+                       TransactionStatus status) {
+
+        this.fromBankAccountId = fromBankAccountId;
+        this.toBankAccountId = toBankAccountId;
+        this.type = type;
+        this.amount = amount;
+        this.scheduledDate = scheduledDate;
+        this.status = status;
+    }
+
+    public Transaction(long fromBankAccountId,
+                       long toBankAccountId,
+                       TransactionType type,
+                       double amount,
+                       java.sql.Date scheduledDate,
+                       Date completedDate,
+                       TransactionStatus status) {
+
+        this.fromBankAccountId = fromBankAccountId;
+        this.toBankAccountId = toBankAccountId;
+        this.type = type;
+        this.amount = amount;
+        this.scheduledDate = scheduledDate;
+        this.completedDate = completedDate;
+        this.status = status;
+    }
 }
