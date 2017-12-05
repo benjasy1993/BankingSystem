@@ -1,9 +1,11 @@
 <!doctype html>
+{% load staticfiles %}
 <html class="no-js" lang="">
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../static/css/home.css">
+    <!-- <link rel="stylesheet" href="../static/css/home.css"> -->
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
     <title>Devonshire Lending LLC - Banking, & Loans</title>
 </head>
 <body>
@@ -18,8 +20,9 @@
         <div class="right">
             <ol class="nav">
                 <li><a href="{% url 'banking_system:user_login' %}">Login</a></li>
+                <li><a href="{% url 'banking_system:register' %}" class="white btn outline">Register</a></li>
             </ol>
-            <a href="{% url 'banking_system:register' %}" class="white button outline cta">Enroll Online Banking </a>
+            <!-- <a href="{% url 'banking_system:register' %}" class="white button outline cta">Enroll Online Banking </a> -->
         </div>
     </div>
 </header>
