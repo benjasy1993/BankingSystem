@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^billpay_company_receipt/$',views.billpay_company_receipt,name='billpay_company_receipt'),
     url(r'^internal_transfer/$',views.internal_transfer,name='internal_transfer'),
     url(r'^internal_transfer/receipt$',views.transfer_receipt,name='transfer_receipt'),
+    url(r'^external_transfer/$',views.external_transfer,name='external_transfer'),
 ]

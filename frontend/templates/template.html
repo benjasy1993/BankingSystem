@@ -413,6 +413,30 @@
             }
 
         }
+    var div1 = document.getElementById("EmailDiv");
+    var div2 = document.getElementById("BankAccountDiv");
+    function fn1() {
+        div1.hidden = false;
+        div2.hidden = true;
+        document.getElementById("bankRadio").checked = false;
+    }
+    function fn2() {
+        div2.hidden = false;
+        div1.hidden = true;
+        document.getElementById("emailRadio").checked = false;
+    }
+    function fn3(){
+        document.getElementById("inputEmail").value = "";
+    }
+    function fn4(){
+        document.getElementById("inputAccount").value = "";
+    }
+    function fn5() {
+        document.getElementById("inputEmail").value = "Email or Phone";
+    }
+    function fn6() {
+        document.getElementById("inputAccount").value = "Account Number";
+    }
     </script>
 
 </body>

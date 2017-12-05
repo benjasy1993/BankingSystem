@@ -168,3 +168,19 @@ def transfer_receipt(request):
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
+
+@login_required()
+def external_transfer(request):
+	if request.method == 'POST':
+		data = request.POST
+		bank_ids = backend_client.getAccountBankId(request.user.id)
+		from_account_id = bank_ids[data['account1']]
+		to_account_id = bank_ids[data['account2']]
+		date = data['date']
+		amount = data['amount']
+
+		result = backend_client.makeTransfer(from_account_id, to_account_id, date, amount)
+		request.session['transfer_result']=result
+		return HttpResponseRedirect(reverse('banking_system:transfer_receipt'))
+	else:
+		return render(request,'external_transfer.html')
