@@ -16,4 +16,11 @@ urlpatterns = [
     url(r'^billpay_company_receipt/$',views.billpay_company_receipt,name='billpay_company_receipt'),
     url(r'^internal_transfer/$',views.internal_transfer,name='internal_transfer'),
     url(r'^internal_transfer/receipt$',views.transfer_receipt,name='transfer_receipt'),
+
+
+    url(r'^home2/$',views.home2,name='home2'),
+    url(r'^login/$',views.user_login,name='user_login'),
+    url(r'^change_login_pin$',views.change_login_pin,name='change_login_pin'),
+
+    # url(r'^billpay_company$',views.billpay_company,name='billpay_company'),
 ]

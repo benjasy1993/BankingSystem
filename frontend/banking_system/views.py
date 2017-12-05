@@ -39,7 +39,7 @@ def register(request):
 			profile.user = user
 			profile.save
 			registered = True
-			login(request, user)
+			login(request)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
 			print(user_form.errors, profile_form.errors)
@@ -48,7 +48,7 @@ def register(request):
 		profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
 			# back to the registration.html file page.
-	return render(request, 'register2.html', {'user_form': user_form,
+	return render(request, 'register.html', {'user_form': user_form,
 											   	 'profile_form': profile_form,
 											   	 'registered': registered})
 
@@ -58,11 +58,14 @@ def user_login(request):
 		password = request.POST.get('password')
 
 		user = authenticate(username=username, password=password)
+
 		if user:
 			login(request, user)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
-			return render(request, 'home.html', {'invalid':'Invalid username or password'})
+			return render(request, 'login.html', {'invalid':'Invalid username or password'})
+	else:
+		return render(request, 'login.html')
 
 @login_required
 def dashboard(request):
@@ -168,3 +171,20 @@ def transfer_receipt(request):
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
+
+
+
+def billpay_company(request):
+	if request.method == 'GET':
+		billType = request.session['qaPayeeType']
+		if billType == 'withAcct':
+			return render(request, 'billpay_company_final_step.html')
+		else:
+			return render(request, 'billpay_searchcompanyname.html')
+
+
+def change_login_pin(request):
+	return render(request, 'change_login_pin.html')
+
+def home2(request):
+	return render(request, 'home2.html')
