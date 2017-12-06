@@ -68,7 +68,6 @@ def getAccountBankId(user_id):
         result['growing'] = 'pending'
     else:
         json = r.json()
-        print(json)
         result['checking'] = int(json['bankAccounts'][0]['accountId'])
         result['saving'] = int(json['bankAccounts'][1]['accountId'])
         result['growing'] = int(json['bankAccounts'][2]['accountId'])
@@ -90,7 +89,7 @@ def makeTransfer(from_account_id, to_account_id, date, amount):
 
 def getActivities(bank_account_id):
     r = requests.get(url = BACK_END_ENDPOINT + '/activities/list', params={
-        'bankAccountId': bank_account_id,'size': 5})
+        'bankAccountId': bank_account_id})
     result = dict()
     if r.text == '':
         return None

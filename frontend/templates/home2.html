@@ -1,0 +1,224 @@
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="../static/css/home.css"> -->
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <title>Devonshire Lending LLC - Banking, & Loans</title>
+</head>
+<body>
+<header>
+    <div class="global-width relative">
+        <div class="left">
+            <div class="logo">
+              <!-- <img src="https://www.realtymogul.com/sites/all/themes/realty_mogul/images/homepage2015/logo.png"> -->
+              <img height="50px" width="300px" src="../static/img/1_Primary_logo_on_transparent_401x63.png" alt="">
+            </div>
+        </div>
+        <div class="right">
+            <ol class="nav">
+                <li><a href="{% url 'banking_system:user_login' %}">Login</a></li>
+                <li><a href="{% url 'banking_system:register' %}" class="white btn outline">Register</a></li>
+            </ol>
+            <!-- <a href="{% url 'banking_system:register' %}" class="white button outline cta">Enroll Online Banking </a> -->
+        </div>
+    </div>
+</header>
+
+<section class="splash relative">
+    <div class="global-width">
+        <h1 class="white margin-bottom-double">Finance your real transactions. Online.</h1>
+        <div class="form">
+            <span class="form-headline">How much are you looking to finance?</span>
+            <div class="col100">
+                <div class="col25 padding-right-half">
+                    <input class="large width-100 white outline" placeholder="Transaction" />
+                </div>
+                <div class="col25 padding-left-half padding-right-half">
+                    <select class="large width-100 white outline">
+                        <option>Credit Card</option>
+                    </select>
+                </div>
+                <div class="col25 padding-left-half padding-right-half">
+                    <select class="large width-100 white outline">
+                        <option>Auto Loan</option>
+                    </select>
+                </div>
+                <div class="col25 padding-left-half">
+                    <a href="{% url 'banking_system:register' %}" class="button large width-100 orange">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="investor-breaker">
+    <div class="investor-breaker-wrapper relative">
+        <span class="investor-breaker-headline">Looking to Finiance Life Online?</span>
+        <a href="{% url 'banking_system:register' %}" class="button large orange outline">Become a Customer</a>
+    </div>
+</div>
+
+<section>
+    <div class="global-width column-3">
+        <div class="col100">
+            <div class="col33 padding-left padding-right">
+                <!-- Product -->
+                <div class="product">
+                    <div class="product-top">
+                        <div class="product-title white margin-bottom-half">Home Loan</div>
+                        <div class="product-sub-title white">$1 - $5 million</div>
+                    </div>
+                    <div class="product-bottom">
+                        <ul class="margin-bottom">
+                            <li>Existing, cash-flowing or value-add transactions</li>
+                            <li>Start online</li>
+                            <li>30-year fixed</li>
+                            <li>Securely upload and e-sign documents using Home Loan Navigator</li>
+                        </ul>
+                        <a href="{% url 'banking_system:register' %}" class="button medium orange">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col33 padding-left padding-right">
+                <!-- Product -->
+                <div class="product">
+                    <div class="product-top">
+                        <div class="product-title white margin-bottom-half">Checking</div>
+                        <div class="product-sub-title white">$150K +</div>
+                    </div>
+                    <div class="product-bottom">
+                        <ul class="margin-bottom">
+                            <li>$12 or $0 monthly fee</li>
+                            <li>Debit lock/unlock</li>
+                            <li>Mobile Banking</li>
+                            <li>Minimum opening deposit</li>
+                            <li>Access to thousands of ATMS and fianncial centers</li>
+                        </ul>
+                        <a href="{% url 'banking_system:register' %}" class="button medium orange">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col33 padding-left padding-right">
+                <!-- Product -->
+                <div class="product">
+                    <div class="product-top">
+                        <div class="product-title white margin-bottom-half">Saving</div>
+                        <div class="product-sub-title white">$1 - $5 million</div>
+                    </div>
+                    <div class="product-bottom">
+                        <ul class="margin-bottom">
+                            <li>Stabilized, transitioning or opportunistic transactions</li>
+                            <li>Easily pay bills & transfer funds</li>
+                            <li>Set goals & track spending</li>
+                            <li>Quickly access your accounts</li>
+                            <li>Mobile banking from almost anywhere</li>
+                        </ul>
+                        <a href="{% url 'banking_system:register' %}" class="button medium orange">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<div class="skyline">
+    <div class="global-width">
+        <div class="skyline-headline white">
+            <span class="row1">More than <b>$64 Million</b> Financed</span>
+            <span class="row2">to Date for <b>226 Properties</b></span>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="global-width column-3">
+        <h2 class="margin-bottom-double">Better Money Habits for your financial life</h2>
+        <div class="col100 margin-bottom-double">
+            <div class="col33 padding-left padding-right">
+                <div class="transaction">
+                    <div class="transaction-top">
+                        <img src="https://www.bls.gov/opub/btn/volume-3/images/education-classification-and-income-and-spending-patterns-image.jpg"/>
+                    </div>
+                    <div class="transaction-bottom">
+                        <div class="transaction-headline">$3,510,000</div>
+                        <div><b>Equity Purchase</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col33 padding-left padding-right">
+                <div class="transaction">
+                    <div class="transaction-top">
+                        <img src="https://www.prcua.org/wp-content/uploads/2016/04/shutterstock_340391981-investment-in-education.jpg"/>
+                    </div>
+                    <div class="transaction-bottom">
+                        <div class="transaction-headline">$3,510,000</div>
+                        <div><b>Equity Purchase</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col33 padding-left padding-right">
+                <div class="transaction">
+                    <div class="transaction-top">
+                        <img src="http://static-news.moneycontrol.com/static-mcnews/2017/03/loan-document_home_1280x720-770x433.jpg">
+                    </div>
+                    <div class="transaction-bottom">
+                        <div class="transaction-headline">$3,510,000</div>
+                        <div><b>Equity Purchase</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="global-width">
+        <h2 class="body-color margin-bottom">Finance your next project today</h2>
+        <a href="{% url 'banking_system:register' %}" class="button large orange">Enroll Now</a>
+    </div>
+</section>
+
+
+<div class="footer">
+    <div class="global-width">
+        <ol class="footer-1 margin-bottom">
+            <li><a href="#" class="white">Facebook</a></li>
+            <li><a href="#" class="white">Twitter</a></li>
+            <li><a href="#" class="white">LinkedIn</a></li>
+            <li><a href="#" class="white">Google+</a></li>
+            <li><a href="#" class="white">YouTube</a></li>
+        </ol>
+        <ol class="footer-2 margin-bottom">
+            <li><a href="#" class="white">About Us</a></li>
+            <li><a href="#" class="white">Careers</a></li>
+            <li><a href="#" class="white">Contact Us</a></li>
+            <li><a href="#" class="white">Statistics+</a></li>
+            <li><a href="#" class="white">FAQs</a></li>
+            <li><a href="#" class="white">Press</a></li>
+            <li><a href="#" class="white">Glossary</a></li>
+            <li><a href="#" class="white">Privacy</a></li>
+            <li><a href="#" class="white">Terms of Service</a></li>
+        </ol>
+        <p>Devenshire Lending is a website operated by Realty Mogul, Co. Equity securities are offered through WealthForge, LLC, a registered broker/dealer and member FINRA/SIPC. WealthForge generally invoices the companies sponsoring real estate projects into
+            which a Realty Mogul-organized company will invest for WealthForge's execution and other services; Realty Mogul is separately paid by WealthForge for Realty Mogul's technology, reporting, communications, and administrative efforts; and several officers
+            and employees of Realty Mogul are registered representatives of WealthForge. Thus, each of Realty Mogul, and those of its officers and employees that are registered representatives of WealthForge, will realize compensation through WealthForge as
+            a result of any equity transaction. Realty Mogul operates in California under DRE license #01926613. By accessing this site and any pages thereof, you agree to be bound by our Terms of Service and Privacy Policy. RealtyMogul.com is intended only
+            for accredited investors (for persons residing in the U.S.), and for persons residing abroad in jurisdictions where securities registration exemptions apply.</p>
+        <p>Realty Mogul does not make investment recommendations, and no communication through this website or in any other medium should be construed as such. Investment opportunities posted on this website are “private placements” of securities that are not
+            publicly traded, are subject to holding period requirements, and are intended for investors who do not need a liquid investment. Private placement investments are NOT bank deposits (and thus NOT insured by the FDIC or by any other federal governmental
+            agency), are NOT guaranteed by Realty Mogul or WealthForge, and MAY lose value. Neither the Securities and Exchange Commission nor any federal or state securities commission or regulatory authority has recommended or approved any investment or the
+            accuracy or completeness of any of the information or materials provided by or through the website. Investors must be able to afford the loss of their entire investment.</p>
+        <p>Any financial projections or returns shown on the website are illustrative examples only, and there can be no assurance that any valuations provided are accurate or in agreement with market or industry valuations. Any investment information contained
+            herein has been secured from sources Realty Mogul believes are reliable, but we make no representations or warranties as to the accuracy of such information and accept no liability therefor. Offers to sell, or the solicitations of offers to buy,
+            any security can only be made through official offering documents that contain important information about risks, fees and expenses. Investors should conduct their own due diligence, not rely on the financial assumptions or estimates displayed on
+            this website, and are encouraged to consult with a financial advisor, attorney, accountant, and any other professional that can help you to understand and assess the risks associated with any investment opportunity.</p>
+        <p>*Past performance is not indicative of future performance.</p>
+        <p>© 2015 Realty Mogul, all rights reserved</p>
+    </div>
+</div>
+
+</body>
+</html>

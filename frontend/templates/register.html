@@ -1,24 +1,161 @@
-{% extends "base.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 {% load staticfiles %}
+<html class="no-js" lang="">
 
-{% block body_block %}
-  <div class="container">
-    <div class="jumbotron">
-      {% if registered %}
-        <h1>Thank you for registering!</h1>
-      {% else %}
-        <h1>Register Here</h1>
+<head>
 
-        <form enctype="multipart/form-data" method="POST">
-          {% csrf_token %}
-          {{ user_form.as_p }}
-          {{ profile_form.as_p }}
-          <input type="submit" name="" value="Register">
-        </form>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-      {% endif %}
+    <meta name="Keywords" CONTENT="Enrollment - Your Information" />
+    <meta name="Description" CONTENT="Enrollment - Your Information" />
+
+    <title>Devonshire Lending LLC | Online Banking | Enrollment</title>
+
+    <meta name="Description" CONTENT="Enrollment - Your Information">
+    <meta name="Keywords" CONTENT="Enrollment - Your Information">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="https://www2.bac-assets.com/homepage/spa-assets/bundles/7a69d802.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/fonts/style.1.css" %}" id="font">
+
+
+    <style type="text/css">
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="trfwl-body      ">
+
+<div class="mboxDefault"></div>
+
+<script type="text/javascript">
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<noscript>
+    <style>
+        body {
+            display: block;
+        }
+    </style>
+</noscript>
+<script>
+    $('cancel-passcode-verify-submit').click(function(e) {
+        e.stopPropagation();
+        $('body').removeClass("hide")
+    });
+</script>
+{% if registered %}
+  <h1>Thank you for registering!</h1>
+{% else %}
+<div class="two-row-flex-wideleft-layout">
+    <div class="center-content">
+        <div class="header">
+            <div class="header-module">
+                <div class="fsd-secure-esp-skin">
+                    <img height="40" width="100" style="float: left" alt="" src="https://www2.bac-assets.com/online-banking/spa-assets/images/assets-images-site-online-banking-icons-signIn_activate_card-CSX94199e4e.svg" />
+                    <div class="page-type" data-font="cnx-regular">Enroll in Online Banking</div>
+                    <div class="clearboth"></div>
+                </div>
+            </div>
+
+            <div class="page-title-module h-100" id="skip-to-h1">
+                <div class="red-grad-bar-skin sup-ie">
+                    <h1 data-font="cnx-regular">Let's get started</h1>
+                </div>
+            </div>
+            <div class="banner-bdf-module">
+                <div class="cms-bg-skin">
+                    <div class="banner-text-content">
+                        <h2>Features and Benefits of Online Banking:</h2>
+                        <p>&nbsp;</p>
+                        <ul>
+                            <li>Secure access to accounts: anytime, anywhere</li>
+                            <li>Easily transfer money between your accounts, and to friends and family.</li>
+                            <li>Receive customized alerts to help stay on top of your account activity.</li>
+                            <li>Save time when you use Bill Pay. It's an easy, fast and secure way to pay your bills.</li>
+                            <li>View credit card account activity, pay your bill online and more. </li>
+                        </ul>
+                        <div class="clearboth"></div>
+                    </div>
+                    <div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-top-row"></div>
+        <div class="bottom-row">
+            <div class="left-column">
+
+                <div class="passcode-module">
+                    <div class="verify-enroll-skin phoenix">
+                        <p class="mbtm-15">Please provide the following information to continue your enrollment.</p>
+                        <div class="container col-md-12" style="position: relative; float: left">
+
+                          <form class="form-horizontal" enctype="multipart/form-data" method="POST">
+                            {% csrf_token %}
+                            {% for field in user_form.visible_fields %}
+                            <div class="form-group bootstrap3-required">
+                                <label class="col-md-2 control-label" style="text-align: left" for="{{ field.name }}">{{ field.label }}</label>
+
+                                <div class="col-md-4">
+                                    <input class="form-control" id="id_{{field.name}}" name="{{ field.name }}" placeholder="{{field.label}}" style="margin-left:{{field.offset}}px" title="" required="" type="text"/>
+                                <!-- </div> -->
+                              </div>
+                              {% for error in field.errors %}
+                              <span class="alert-danger col-md-4" style="border: 1px solid transaprent; border-radius: 4px; hight: 10rem;">
+                                <strong>{{ error|escape }}</strong>
+                              </span>
+                              {% endfor %}
+                            </div>
+                              {% endfor %}
+                              {% for field in profile_form.visible_fields %}
+                              <div class="form-group bootstrap3-required">
+                                  <label class="col-md-2 control-label" style="text-align: left" for="{{ field.name }}">{{ field.label }}</label>
+
+                                  <div class="col-md-4">
+                                      <input class="form-control" id="id_{{field.name}}" name="{{ field.name }}" placeholder="{{field.label}}" style="margin-left:{{field.offset}}px" title="" required="" type="text"/>
+                                  <!-- </div> -->
+                                </div>
+                                {% for error in field.errors %}
+                                <span class="alert-danger col-md-4" style="border: 1px solid transaprent; border-radius: 4px;">
+                                  <strong>{{ error|escape }}</strong>
+                                </span>
+                                {% endfor %}
+                              </div>
+                                {% endfor %}
+                            <!-- {{ user_form.as_p }}
+                            {{ profile_form.as_p }} -->
+                            <div style="margin-left: 12rem; margin-bottom: 5rem">
+                              <input type="submit" class="btn-bofa btn-bofa-small btn-bofa-blue" value="Register"> </input>
+                            </div>
+                          </form>
+                        </div>
+                    </div><!-- /.container -->
+                </div>
+
+
+
+            </div>
+            <div class="right-column no-print"></div>
+            <div class="clearboth"></div>
+        </div>
     </div>
+</div>
+{% endif %}
+</body>
 
-  </div>
-
-{% endblock %}
+</html>
