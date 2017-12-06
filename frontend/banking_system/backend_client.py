@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-BACK_END_ENDPOINT = 'http://localhost:8002'
+BACK_END_ENDPOINT = 'http://128.237.141.209:8002'
 ACCOUNTS_URL = BACK_END_ENDPOINT + '/accounts'
 
 def setUpAccount(user_id):

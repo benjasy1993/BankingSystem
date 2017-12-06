@@ -15,24 +15,25 @@
             <div class="panel" style="height: 300px">
                 <div class="panel-heading">Add A Bill</div>
                 <!-- check one of the two radio button and click continue, user will be transfered to billpay_searchcompanyname.html-->
-                <form method="post" action="billpay_searchcompanyname.html" autocomplete="off">
+                <form method="POST" action="" autocomplete="off">
+                    {% csrf_token %}
                 <div class="panel-body">
                     <p>To start making payments, select the type of bill you want to add and click Continue. If you have an account number for the bill, select that option to ensure that your payment is properly credited.</p>
                     <a href=""><p>More about Who I can pay...</p></a>
                     <p id="disableText1" style="vertical-align: middle; font-size: small">
                         <label class="tall-label">Who do you want to pay?</label>
                         <div style="margin-left: 20px;font-size: small">
-                            <input type="hidden" name="payeeType" value="Companywithaccount">
-                            <input name="qaPayeeType" type="radio" id="type1" value="withAcct">
+                            <!-- <input type="hidden" name="payeeType" value="Companywithaccount"> -->
+                            <input name="qaPayeeType" type="radio" id="type1" value="withAcct" checked>
                             <span id="disableText2"><label class="radio-list" for="type1">Company with an account number</label></span><br>
                             <input type="radio" name="qaPayeeType" id="type2" value="withoutAcct">
                             <span id="disableText3"><label class="radio-list" for="type2">Company without an account number</label></span>
                         </div>
                     </p>
-                    <ul class="search-buttons" style="float: left">
-                        <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="{% url 'banking_system:billpay_company_w_acc' %}">Continue</a></li>
-                        <li class="btn btn-default" style="font-weight: bold"><a href="{% url 'banking_system:dashboard' %}">Cancel</a></li>
-                    </ul>
+                    <div class="search-buttons" style="float: left">
+                      <input class="btn" style="font-weight: bold; background-color: #ffa500;" type="submit" name="button" value="Continue"></input>
+                      <input class="btn btn-default" style="font-weight: bold" type="button" name="button" href="{% url 'banking_system:dashboard' %}" value="Cancel"></input>
+                    </div>
                 </div>
                 </form>
             </div>

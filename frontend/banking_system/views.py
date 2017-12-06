@@ -19,7 +19,7 @@ def home(request):
 		return render(request, 'home.html')
 
 	else:
-		return user_login(request)
+		return user_login(request, user)
 
 def register(request):
 
@@ -39,7 +39,7 @@ def register(request):
 			profile.user = user
 			profile.save
 			registered = True
-			login(request)
+			login(request, user)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
 			print(user_form.errors, profile_form.errors)
@@ -75,7 +75,7 @@ def dashboard(request):
 @login_required
 def user_logout(request):
 	logout(request)
-	return HttpResponseRedirect(reverse('banking_system:home'))
+	return HttpResponseRedirect(reverse('banking_system:home2'))
 
 @login_required
 def profile(request):
@@ -115,7 +115,15 @@ def billpay(request):
 
 @login_required
 def billpay_addbill(request):
-	return render(request, 'billpay_selecttype.html')
+	if request.method == 'GET':
+		return render(request, 'billpay_selecttype.html')
+	else:
+		data = request.POST
+		billType = data["qaPayeeType"]
+		if billType == 'withAcct':
+			return render(request, 'billpay_company_final_step.html')
+		else:
+			return HttpResponseRedirect(reverse('banking_system:billpay_searchcompanyname'))
 
 @login_required
 def billpay_company_w_acc(request):
@@ -125,22 +133,22 @@ def billpay_company_w_acc(request):
 		data = request.POST
 		billpay = dict()
 
-		print request.user.id
+		# print request.user.id
 		billpay['user_id']=str(request.user.id)
 		billpay['toAccountNum']=str(request.POST['accountNumber'])
 		billpay['routine']=str(request.POST['routingNumber'])
 		billpay['amount']=str(request.POST['amount'])
 		billpay_result = backend_client.billpay_company_w_acc(billpay['user_id'], billpay['toAccountNum'], billpay['routine'], billpay['amount'], data['date'])
-		print billpay_result
+		# print billpay_result
 
 		request.session['billpay_result'] = billpay_result
 		return HttpResponseRedirect(reverse('banking_system:billpay_company_receipt'))
 		# return render(request, 'billpay_company_final_step.html')
 		# return render(request, 'billpay_company_receipt.html')
 
-@login_required
-def billpay_company_addbill(request):
-	return render(request, 'billpay_company_receipt.html')
+# @login_required
+# def billpay_company_addbill(request):
+# 	return render(request, 'billpay_company_receipt.html')
 
 @login_required
 def billpay_company_receipt(request):
@@ -172,15 +180,16 @@ def transfer_receipt(request):
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
 
-
-
-def billpay_company(request):
-	if request.method == 'GET':
-		billType = request.session['qaPayeeType']
-		if billType == 'withAcct':
-			return render(request, 'billpay_company_final_step.html')
-		else:
+@login_required
+def billpay_searchcompanyname(request):
+		if request.method == 'GET':
 			return render(request, 'billpay_searchcompanyname.html')
+		else:
+			data = request.POST
+			searchVal = str(data['billerName'])
+			print searchVal
+			return render(request, 'billpay_search_company_result.html', {'searchVal':searchVal })
+
 
 
 def change_login_pin(request):
@@ -188,3 +197,39 @@ def change_login_pin(request):
 
 def home2(request):
 	return render(request, 'home2.html')
+
+@login_required
+def billpay_searchname(request):
+	if request.method == 'GET':
+		return render(request, 'billpay_searchcompanyname.html')
+
+def register2(request):
+	registered = False
+
+	if request.method == 'POST':
+		# //print request.POST
+		user_form = UserForm(data=request.POST)
+		profile_form = UserProfileInfoForm(data=request.POST)
+
+		if user_form.is_valid() and profile_form.is_valid():
+			user = user_form.save()
+			user.set_password(user.password)
+			user.save()
+			backend_client.setUpAccount(user.id)
+			profile = profile_form.save(commit=False)
+			profile.user = user
+			profile.save
+			registered = True
+			login(request)
+			return HttpResponseRedirect(reverse('banking_system:dashboard'))
+		else:
+			print(user_form.errors, profile_form.errors)
+	else:
+		user_form = UserForm()
+		profile_form = UserProfileInfoForm()
+				# This is the render and context dictionary to feed
+				# back to the registration.html file page.
+	return render(request, 'register2.html', {'user_form': user_form,
+												   	 'profile_form': profile_form,
+												   	 'registered': registered})
+	# return render(request, 'register2.html')

@@ -672,7 +672,7 @@ header .phone {
 header ol.nav {
     position: absolute;
     top: 0;
-    right: 155px;
+    right: 10px;
     height: 80px;
     line-height: 80px;
 }

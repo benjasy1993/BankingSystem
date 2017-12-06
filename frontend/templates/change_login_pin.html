@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<section class="main-content">
+
+    <div class="content-wrap">
+        <div class="row mg-b">
+            <div class="col-xs-6">
+                <h3 class="no-margin">Change Login Password</h3>
+            </div>
+        </div>
+        <div class="container" style="width: 100%;">
+
+          <div class="panel panel-primary">
+                      <div class="panel-heading"> Sets New Password</div>
+                      <div class="panel-body">
+                          <form class="form-horizontal" role="form">
+                              <div class="form-group">
+                                  <label class="col-lg-2 control-label">Current Password:*</label>
+                                  <div class="col-lg-6">
+                                      <input type="password" class="form-control" id="c-pwd" placeholder=" ">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-lg-2 control-label">New Password:*</label>
+                                  <div class="col-lg-6">
+                                      <input type="password" class="form-control" id="n-pwd" placeholder=" ">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-lg-2 control-label">Re-type New Password:*</label>
+                                  <div class="col-lg-6">
+                                      <input type="password" class="form-control" id="rt-pwd" placeholder=" ">
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                      <input type="submit" class="btn btn-primary" value="Change Password"></input>
+                                      <a href="{% url 'banking_system:dashboard' %}"><input type="button" class="btn btn-default" value="Cancel"></input></a>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

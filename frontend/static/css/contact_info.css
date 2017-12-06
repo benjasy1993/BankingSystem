@@ -1,0 +1,158 @@
+.gbtel-text-grey { color: #6d7173;}
+.account-container { border-radius: 5px; }
+.sexy_line_in_container {
+    margin-bottom: 25px;
+    height: 1px;
+    background: #eeeff1;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#eeeff1), color-stop(0.5, #007eb6), to(#eeeff1));
+    width: 100%;
+}
+.flex-col {
+    display: flex;
+    display: -webkit-flex;
+    flex: 1 100%;
+    flex-flow: column nowrap;
+}
+.row-flex-wrap {
+    -webkit-flex-flow: row wrap;
+    align-content: space-around;
+    flex: 1;
+}
+.row-flex, .row-flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+.gbtel-button-primary {
+    width: 100%;
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    box-shadow: none;
+    text-shadow: none;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.panel-heading>h3 { margin-left: 10px; }
+.panel-heading>h3>i { margin-right: 10px; }
+
+#btn_myaccount_stripe { margin-left: 10px;}
+
+#dollary-doo { font-size: 1.5em; }
+
+.child-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+}
+.child-flex-items {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.content-item {
+    flex-grow: 1;
+}
+
+.address-title {
+    font-family: arial;
+    font-size: small;
+    padding-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.clearboth {
+    clear: both;
+    height: 10px;
+    visibility: hidden;
+    line-height: 1pt;
+    font-size: 0;
+}
+.fl-lt {
+    float: left;
+}
+.mlt-10 {
+    margin-left: 10px;
+}
+label.normal {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-left: 0;
+}
+
+.next-field {
+    margin-bottom: 8px;
+}
+
+.btn-bofa-noRight {
+    margin-right: 0;
+}
+
+.btn-bofa-small {
+    font-size: 13px;
+    padding: 1px 14px;
+}
+.action-primary {
+    float: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.action-secondary {
+    float: left;
+    margin: 20px 10px 20px 5px;
+}
+.fl-rt {
+    float: right;
+}
+
+.mrt-30 {
+    margin-right: 30px;
+}
+.phone-number-update-skin {
+    font-family: arial;
+    font-size: 13px;
+    margin: 15px 15px 15px 0;
+    padding: 20px 0 30px 0;
+}
+.inline-olb-info-msg {
+    border: 1px solid #b6dcfc;
+    background: #ecf6fd;
+    padding: 10px 19px 10px 9px;
+}
+.mbtm-20 {
+    margin-bottom: 20px;
+}
+.mrt-15 {
+    margin-right: 15px;
+}
+.ptop-15 {
+    padding-top: 15px;
+}

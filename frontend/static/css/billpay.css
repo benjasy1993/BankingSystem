@@ -36,7 +36,7 @@ h3 {
     clear: both;
 }
 .search-label{
-    float: left;
+    margin-right: 1rem;
     text-align: right;
     width: 175px;
 }
@@ -110,4 +110,7 @@ a {
     color: #369;
     font-weight: bold;
     text-decoration: none;
+}
+.biller-list {
+    padding: 10px;
 }

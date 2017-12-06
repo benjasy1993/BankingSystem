@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^login/$',views.user_login,name='user_login'),
     url(r'^change_login_pin$',views.change_login_pin,name='change_login_pin'),
 
-    # url(r'^billpay_company$',views.billpay_company,name='billpay_company'),
+    url(r'^billpay_addbill/searchname$',views.billpay_searchcompanyname,name='billpay_searchcompanyname'),
 ]

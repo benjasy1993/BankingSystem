@@ -1,0 +1,107 @@
+{% extends "template.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<section class="main-content">
+
+    <div class="content-wrap">
+        <div class="row mg-b">
+            <div class="col-xs-6">
+                <h3 class="no-margin">Add A Bill</h3>
+            </div>
+        </div>
+        <div class="container" style="width: 100%">
+
+                    <div class="panel" style="height: 350px">
+                        <div class="panel-heading">Add A Bill</div>
+                        <div id="container">
+                            <div class="module">
+                                <div class="modbody">
+                                    <p class="help-link-cleared"><a href="wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt" onclick="this.href='javascript:popRemoteSmall(\'wps?&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;rq=gf&amp;file=add_bill_help.htmlt\')';this.target='';" title="">Tell me about adding bills ...</a></p>
+                                    <div id="genErrors"></div>
+                                    <script type="text/javascript">
+                                        <!--!
+                                            function submitForm(value) {
+                                                var billerName = document.addpayee.billerName.value;
+                                                document.addpayee.buttonClicked.value = value;
+                                                document.addpayee.submit();
+                                            }
+
+                                        function goBackToAddPage() {
+                                            window.location.href = "wps?rq=qaadd&sp=FI05&oss=4ce010a08bb78ed526543e023ce25d0e";
+                                        }
+
+                                        function setPayee(value) {
+                                            document.forms['addpayee'].zipReq.value = value.substring(value.indexOf("~~") + 2, value.length);
+                                            document.forms['addpayee'].MrchNum.value = value.substring(value.indexOf("~~") + 2, value.length);
+                                            document.forms['addpayee'].billerName.value = value.substring(0, value.indexOf("~~"));
+                                        }
+                                        // -->
+                                    </script>
+                                    <form action="" method="post" name="addpayee">
+                                        <!-- <input type="hidden" name="buttonClicked">
+                                        <input type="hidden" name="rq" value="pyfindcom">
+                                        <input type="hidden" name="eplFlag" value="">
+                                        <input type="hidden" name="type" value="">
+                                        <input type="hidden" name="MrchNum" value="Y~8729">
+                                        <input type="hidden" name="billerName" value="AAA Colorado">
+                                        <input type="hidden" name="multipleMatch" value="Y">
+                                        <input type="hidden" name="qaPayeeType" value="withAcct">
+                                        <input type="hidden" name="searchString" value="aaa">
+                                        <input type="hidden" name="searchStringValue" value="Y">
+                                        <input type="hidden" name="cleanBillerName" value="">
+                                        <input type="hidden" name="byPassFirst" value="Y">
+                                        <input type="hidden" name="zipReq" value="Y~8729">
+                                        <input type="hidden" name="sp" value="FI05">
+                                        <input type="hidden" name="oss" value="4ce010a08bb78ed526543e023ce25d0e"> -->
+
+                                        <p class="bp-p">We found some possible matches for {{ searchVal }}. Please select the company you want to add from the list below.</p>
+                                        <div class="biller-list">
+                                            <label for="payeeSelect" doerrorimage="false"></label>
+                                            <select name="payeeSelect" id="payeeSelect" size="5" onchange="setPayee(this.value);">
+                                                <option value="AAA Auto Club South - Membership~~Y~3233">
+                                                    AAA Auto Club South - Membership </option>
+                                                <option value="AAA Colorado~~Y~8729">
+                                                    AAA Colorado </option>
+                                                <option value="AAA Life Insurance~~Y~3217">
+                                                    AAA Life Insurance </option>
+                                                <option value="AAA N. CA, NV &amp; UT~~Y~619">
+                                                    AAA N. CA, NV &amp; UT </option>
+                                                <option value="AAA Northeast~~Y~4495">
+                                                    AAA Northeast </option>
+                                                <option value="AAA Rental &amp; Service Company Inc~~Y~5763">
+                                                    AAA Rental &amp; Service Company Inc </option>
+                                                <option value="AAA Virginia Home and Auto~~Y~8119">
+                                                    AAA Virginia Home and Auto </option>
+                                                <option value="AAA Virginia Membership~~Y~8416">
+                                                    AAA Virginia Membership </option>
+                                                <option value="AAA Washington WA~~Y~11378">
+                                                    AAA Washington (WA) </option>
+                                                <option value="AAA-MidAtlantic Membership~~Y~4945">
+                                                    AAA-MidAtlantic Membership </option>
+
+
+                                            </select>
+                                        </div>
+                                        <ul class="search-buttons" style="float: none">
+                                            <li class="btn" style="font-weight: bold; background-color: #ffa500;"><a href="javascript:submitMPChgPayPlanForm('Save Changes');">Continue</a></li>
+                                            <li class="btn btn-default" style="font-weight: bold"><a href="javascript:goBackToQuickAddPage();">Cancel</a></li>
+                                        </ul>
+                                        <p class="more-info-link"style="padding-top: 4rem">If you prefer, you can <a href="wps?rq=cadd&amp;sp=FI05&amp;oss=4ce010a08bb78ed526543e023ce25d0e&amp;pageSelect=1&amp;qaPayeeType=withAcct&amp;name=">enter all the information for your bill</a>.</p>
+                                    </form>
+                                </div>
+                                <div class="brc">
+                                    <div class="blc"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+    </div>
+
+</section>
+
+{% endblock %}
