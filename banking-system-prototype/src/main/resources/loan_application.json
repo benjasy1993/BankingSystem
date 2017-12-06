@@ -1,0 +1,7 @@
+{
+  "userId": 10,
+  "amount": 20000,
+  "description": "personal statement",
+  "paybackPeriod": 24,
+  "bankAccountId": 10
+}

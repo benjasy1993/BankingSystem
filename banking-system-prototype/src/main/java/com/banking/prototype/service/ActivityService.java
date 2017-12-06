@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
 
@@ -37,7 +38,12 @@ public class ActivityService {
     }
 
 
-    private Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
+    public void deleteActivities() {
+        activityRepository.deleteAll();
+    }
+
+    @Transactional
+    public Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
         BankAccount from = bankAccountRepository.findOne(fromAccountId);
         BankAccount to = bankAccountRepository.findOne(toAccountId);
 
@@ -57,7 +63,7 @@ public class ActivityService {
                 from.setBalance(from.getBalance() - amount);
                 to.setBalance(to.getBalance() + amount);
             } else {
-                throw new Exception("Invalid Balance");
+                return null;
             }
             TransactionStatus status = TransactionStatus.COMPLETED;
             transaction = new Transaction(fromAccountId, toAccountId, type, amount, date, new java.util.Date(), status);
@@ -70,6 +76,7 @@ public class ActivityService {
                         from.getAccountId(),
                         transaction.getTransactionId(),
                         generateDescription(transaction),
+                        new Date(transaction.getScheduledDate().getTime()),
                         from.getBalance()));
 
         activityRepository.save(
@@ -77,12 +84,14 @@ public class ActivityService {
                         to.getAccountId(),
                         transaction.getTransactionId(),
                         generateDescription(transaction),
+                        new Date(transaction.getScheduledDate().getTime()),
                         to.getBalance()));
         return transaction;
     }
 
+    //list activites by bank account
     public Page<Activity> listActivities(Long bankAccountId, Pageable pageable) {
-        return activityRepository.getActivitiesByBankAccountId(bankAccountId, pageable);
+        return activityRepository.getActivitiesByBankAccountIdOrderByDateDesc(bankAccountId, pageable);
     }
 
     public List<Activity> listAllActivities() {
