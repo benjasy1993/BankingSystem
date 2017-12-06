@@ -71,4 +71,10 @@ public class AccountController {
         service.uploadCompanyAccountInfo(list);
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public AccountInfo searchAccountInfoByAccountNumByRoutingNum(@RequestParam("routingNum") String routingNum,
+                                                                 @RequestParam("accountNum") String accountNum) {
+        return service.searchAccountInfo(accountNum, routingNum);
+    }
+
 }

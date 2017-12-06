@@ -51,5 +51,9 @@ public class ActivityController {
         return service.listAllActivities();
     }
 
+    @RequestMapping(value = "/activities/purge")
+    public void deleteAllActivities() {
+        service.deleteActivities();
+    }
 
 }

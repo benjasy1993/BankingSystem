@@ -9,6 +9,9 @@ import com.banking.prototype.repositories.CompanyAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,6 +28,9 @@ public class AccountService {
 
     public void createAccounts(int userId){
         AccountInfo accountInfo = new AccountInfo(userId);
+        for (BankAccount account : accountInfo.getBankAccounts()) {
+            account.setBalance(500);
+        }
         accountInfoRepository.save(accountInfo);
     }
 
@@ -75,4 +81,16 @@ public class AccountService {
     public void uploadBillers(List<CompanyAccountInfo> list) {
         companyAccountRepository.save(list);
     }
+
+    public AccountInfo searchAccountInfo(String accountNum, String routingNum) {
+        BankAccount bankAccount = bankAccountRepository.findFirstByRoutingNumAndAccountNum(routingNum, accountNum);
+        AccountInfo info = accountInfoRepository.findAccountInfoByBankAccountsContaining(bankAccount);
+
+        List<BankAccount> result = new ArrayList<>();
+        result.add(bankAccount);
+        info.setBankAccounts(result);
+
+        return info;
+    }
+
 }

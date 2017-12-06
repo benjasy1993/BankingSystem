@@ -69,6 +69,7 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+	print request.user.id
 	balances = backend_client.getAccountInfo(request.user.id)
 	return render(request, 'dashboard.html', {'balances': balances})
 

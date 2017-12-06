@@ -32,4 +32,6 @@ public class CompanyAccountInfo {
 
     private String address;
 
+
+
 }

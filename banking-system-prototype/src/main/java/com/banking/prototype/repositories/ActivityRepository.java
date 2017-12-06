@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
-    Page<Activity> getActivitiesByBankAccountId(Long bankAccountId, Pageable pageable);
+    Page<Activity> getActivitiesByBankAccountIdOrderByDateDesc(Long bankAccountId, Pageable pageable);
+
 }
