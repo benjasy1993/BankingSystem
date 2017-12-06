@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-BACK_END_ENDPOINT = 'http://localhost:8002'
+BACK_END_ENDPOINT = 'http://128.237.141.209:8002'
 ACCOUNTS_URL = BACK_END_ENDPOINT + '/accounts'
 
 def setUpAccount(user_id):
@@ -68,6 +68,7 @@ def getAccountBankId(user_id):
         result['growing'] = 'pending'
     else:
         json = r.json()
+        print(json)
         result['checking'] = int(json['bankAccounts'][0]['accountId'])
         result['saving'] = int(json['bankAccounts'][1]['accountId'])
         result['growing'] = int(json['bankAccounts'][2]['accountId'])
@@ -89,7 +90,7 @@ def makeTransfer(from_account_id, to_account_id, date, amount):
 
 def getActivities(bank_account_id):
     r = requests.get(url = BACK_END_ENDPOINT + '/activities/list', params={
-        'bankAccountId': bank_account_id})
+        'bankAccountId': bank_account_id,'size': 5})
     result = dict()
     if r.text == '':
         return None

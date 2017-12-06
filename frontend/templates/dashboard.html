@@ -1,6 +1,7 @@
 {% extends "template.html" %}
 {% load staticfiles %}
 
+
 {% block body_block %}
 
 <section class="main-content">
@@ -83,7 +84,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="fixed-table-container">
                                     <div class="fixed-table-body">
@@ -118,14 +119,41 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr style="text-align: left"class="no-records-found">
-                                                <td>2017-11-17</td>
-                                                <td>BEST BUY MACBOOK PRO 15</td>
-                                                <td>Bill</td>
-                                                <td>COMPLETED</td>
-                                                <td>$ 1,151</td>
-                                                <td>$ 792</td>
-                                            </tr>
+                                            <ul>
+                                            {% for Activity in activities1 %}
+                                                <tr style="text-align: left"class="no-records-found">
+                                                    <td>{{Activity.date}}</td>
+                                                    <td>{{Activity.description}}</td>
+                                                    <td>Bill</td>
+                                                    <td>COMPLETED</td>
+                                                    <td>$ 1,151</td>
+                                                    <td>$ {{Activity.balance}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </ul>
+                                            {% for Activity in activities2 %}
+                                                <tr style="text-align: left"class="no-records-found">
+                                                    <td>{{Activity.date}}</td>
+                                                    <td>{{Activity.description}}</td>
+                                                    <td>Bill</td>
+                                                    <td>COMPLETED</td>
+                                                    <td>$ 1,151</td>
+                                                    <td>$ {{Activity.balance}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </ul>
+                                            {% for Activity in activities3 %}
+                                                <tr style="text-align: left"class="no-records-found">
+                                                    <td>{{Activity.date}}</td>
+                                                    <td>{{Activity.description}}</td>
+                                                    <td>Bill</td>
+                                                    <td>COMPLETED</td>
+                                                    <td>$ 1,151</td>
+                                                    <td>$ {{Activity.balance}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </ul>
+
                                             </tbody>
                                         </table>
                                     </div>

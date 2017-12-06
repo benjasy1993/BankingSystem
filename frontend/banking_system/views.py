@@ -48,7 +48,7 @@ def register(request):
 		profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
 			# back to the registration.html file page.
-	return render(request, 'register2.html', {'user_form': user_form,
+	return render(request, 'register.html', {'user_form': user_form,
 											   	 'profile_form': profile_form,
 											   	 'registered': registered})
 
@@ -66,8 +66,13 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+	print 'user id: ' + str(request.user.id)
 	balances = backend_client.getAccountInfo(request.user.id)
-	return render(request, 'dashboard.html', {'balances': balances})
+	bank_ids = backend_client.getAccountBankId(request.user.id)
+	activities1 = backend_client.getActivities(bank_ids['checking'])['content']
+	activities2 = backend_client.getActivities(bank_ids['saving'])['content']
+	activities3 = backend_client.getActivities(bank_ids['growing'])['content']
+	return render(request, 'dashboard.html', {'balances': balances,'activities1': activities1,'activities2': activities2,'activities3': activities3})
 
 @login_required
 def user_logout(request):
@@ -165,6 +170,9 @@ def internal_transfer(request):
 @login_required
 def transfer_receipt(request):
 	result = request.session['transfer_result']
+
+	print request.session['transfer_result']
+	
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
