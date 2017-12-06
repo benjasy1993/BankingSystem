@@ -48,7 +48,7 @@ def register(request):
 		profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
 			# back to the registration.html file page.
-	return render(request, 'register2.html', {'user_form': user_form,
+	return render(request, 'register.html', {'user_form': user_form,
 											   	 'profile_form': profile_form,
 											   	 'registered': registered})
 
@@ -165,9 +165,21 @@ def internal_transfer(request):
 @login_required
 def transfer_receipt(request):
 	result = request.session['transfer_result']
+	print result['completedDate']
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
+
+
+
+@login_required
+def transfer_receipt(request):
+	result = request.session['transfer_result']
+	print result['completedDate']
+	time = float(str(result['completedDate'])[:-3])
+	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
+	return render(request, 'transfer_receipt.html', {'result': result})
+
 
 @login_required()
 def external_transfer(request):
@@ -175,12 +187,19 @@ def external_transfer(request):
 		data = request.POST
 		bank_ids = backend_client.getAccountBankId(request.user.id)
 		from_account_id = bank_ids[data['account1']]
-		to_account_id = bank_ids[data['account2']]
+		toAccount = backend_client.getToUserId(data['inputAccountNumber'], data['inputRoutingNumber'])
+		to_account_user_id = toAccount['userId']
 		date = data['date']
 		amount = data['amount']
-
-		result = backend_client.makeTransfer(from_account_id, to_account_id, date, amount)
-		request.session['transfer_result']=result
-		return HttpResponseRedirect(reverse('banking_system:transfer_receipt'))
+		firstName = data['firstName']
+		lastName = data['lastName']
+		to_account_id = toAccount['bankAccounts'][0]['accountId']
+		print to_account_user_id
+		user = User.objects.get(pk=to_account_user_id)
+		if firstName == user.first_name and lastName == user.last_name:
+			result = backend_client.makeTransfer(from_account_id, to_account_id, date, amount)
+			request.session['transfer_result']=result
+			return HttpResponseRedirect(reverse('banking_system:external_transfer_receipt'))
+		return render(request,'external_transfer.html')
 	else:
 		return render(request,'external_transfer.html')

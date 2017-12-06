@@ -1,0 +1,110 @@
+{% extends "template.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<section class="main-content">
+
+    <div class="content-wrap">
+        <div class="container" style="width: 100%">
+            <div class="panel" style="height: 800px">
+                <div id="container">
+                    <div class="module">
+
+                        <header class="invoice-header invoice-row">
+                            <div class="logoholder text-center" contenteditable>
+                                <img class="logo" src="{% static 'img/logo2.jpeg' %}">
+                            </div>
+
+                            <div class="me">
+                                <p>
+                                    <strong>Devonshire Lending LLC – Onling Banking</strong><br>
+                                    Walnut Street <br>
+                                    000 Shady Ave<br>
+                                    Pittsburgh, PA, US
+                                </p>
+                            </div><!--.col-->
+                            <div class="info">
+                                <p>
+                                    Web: <a href="">www.devenshirelending.com</a><br>
+                                    Mail: <a href="mailto:hello@volkerotto.net">hello@devenshirelending.com</a><br>
+                                    Tel: +1 412 - XXX - XXX<br>
+                                    Fax: 0101010101
+                                </p>
+                            </div>
+
+                            <div class="col-3 bank">
+                                <p>
+                                    Branches: <br>
+                                    IBAN: <br>
+                                    BIC:
+                                </p>
+                            </div>
+                        </header>
+                        <div class="invoicelist-body" style="margin-top: 90px;margin-left: 120px">
+                            <table>
+                                <thead>
+                                <th>Transfer Payment - Confirmation</th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-xs-1">Status</td>
+                                    <td class="col-xs-2">{{ result.status }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">Description</td>
+                                    <td class="col-xs-2">{{ result.type }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">Transaction Id</td>
+                                    <td class="col-xs-2">{{ result.transactionId }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">From</td>
+                                    <td class="col-xs-2">{{ result.fromBankAccountId }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">To</td>
+                                    <td class="col-xs-1">{{ result.toBankAccountId }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">Amount</td>
+                                    <td class="col-xs-2">{{ result.amount }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">Schedule Date</td>
+                                    <td class="col-xs-2">{{ result.scheduledDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1">Completed Date</td>
+                                    <td class="col-xs-2">{{ result.completedDate}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div><!--.invoice-body-->
+
+
+                        <ul class="search-buttons" style="padding-top:2rem; margin-top:30px;margin-left: 450px;margin-bottom: 100px">
+                            <li class="btn" style="width: auto;font-weight: bold; background-color: #f14c4c;text-align: center"><a style="color: white" href="{% url 'banking_system:external_transfer'%}">Schedule Another Transfer</a></li>
+                            <li class="btn" style="width: auto;font-weight: bold; background-color: #f14c4c;text-align: center"><a style="color: white" href="{% url 'banking_system:dashboard'%}">Go to DashBoard</a></li>
+
+                        </ul>
+
+                        <footer class="row">
+                            <div class="col-1 text-center">
+                                <p class="notaxrelated">Devonshire Lending LLC.</p>
+                                <p class="legal-text">&copy; 2017 Devonshire Lending LLC. <span>All rights reserved.</span></p>
+                            </div>
+                        </footer>
+
+
+                        <div class="blc"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

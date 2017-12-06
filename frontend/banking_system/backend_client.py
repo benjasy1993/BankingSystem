@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-BACK_END_ENDPOINT = 'http://localhost:8002'
+BACK_END_ENDPOINT = 'http://128.237.195.249:8002'
 ACCOUNTS_URL = BACK_END_ENDPOINT + '/accounts'
 
 def setUpAccount(user_id):
@@ -91,6 +91,14 @@ def getActivities(bank_account_id):
     r = requests.get(url = BACK_END_ENDPOINT + '/activities/list', params={
         'bankAccountId': bank_account_id})
     result = dict()
+    if r.text == '':
+        return None
+    else:
+        return r.json()
+
+def getToUserId(to_account_account_number, to_account_routing_number):
+    r = requests.get(url = BACK_END_ENDPOINT + '/accounts/search', params={'accountNum':to_account_account_number,
+    'routingNum': to_account_routing_number})
     if r.text == '':
         return None
     else:

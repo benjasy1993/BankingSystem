@@ -271,7 +271,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="horizontal.html">
+                                    <a href="{% url 'banking_system:external_transfer' %}">
                                         <span>Send Money to Someone</span>
                                     </a>
                                 </li>
@@ -416,27 +416,37 @@
     var div1 = document.getElementById("EmailDiv");
     var div2 = document.getElementById("BankAccountDiv");
     function fn1() {
+      var div1 = document.getElementById("EmailDiv");
+      var div2 = document.getElementById("BankAccountDiv");
         div1.hidden = false;
         div2.hidden = true;
         document.getElementById("bankRadio").checked = false;
     }
     function fn2() {
+      var div1 = document.getElementById("EmailDiv");
+      var div2 = document.getElementById("BankAccountDiv");
         div2.hidden = false;
         div1.hidden = true;
         document.getElementById("emailRadio").checked = false;
     }
-    function fn3(){
-        document.getElementById("inputEmail").value = "";
-    }
+    // function fn3(){
+    //     document.getElementById("inputEmail").value = "";
+    // }
     function fn4(){
-        document.getElementById("inputAccount").value = "";
+        document.getElementById("inputAccountNumber").value = "";
     }
-    function fn5() {
-        document.getElementById("inputEmail").value = "Email or Phone";
+    // function fn5() {
+    //     document.getElementById("inputEmail").value = "Email or Phone";
+    // }
+    // function fn6() {
+    //     document.getElementById("inputAccountNumber").value = "Account Number";
+    // }
+    function fn7() {
+      document.getElementById("inputRoutingNumber").value = "";
     }
-    function fn6() {
-        document.getElementById("inputAccount").value = "Account Number";
-    }
+    // function fn8() {
+    //   document.getElementById("inputRoutingNumber").value = "Routing Number";
+    // }
     </script>
 
 </body>

@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^internal_transfer/$',views.internal_transfer,name='internal_transfer'),
     url(r'^internal_transfer/receipt$',views.transfer_receipt,name='transfer_receipt'),
     url(r'^external_transfer/$',views.external_transfer,name='external_transfer'),
+    url(r'^external_transfer/receipt$',views.external_transfer_receipt,name='external_transfer_receipt'),
 ]
