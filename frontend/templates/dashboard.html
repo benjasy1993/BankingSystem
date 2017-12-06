@@ -3,6 +3,8 @@
 
 {% block body_block %}
 
+<link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+
 <section class="main-content">
 
     <div class="content-wrap">
@@ -50,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="width:100%">
             <div class="col-md-12">
                 <div >
                     <div class="pad-bottom">
@@ -59,97 +61,130 @@
                         <span>Available balance (as of today):</span>
                         <div class="sum-line"></div>
                     </div>
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" width:100%>
                         <div class="panel-heading">All Transactions</div>
                         <div class="panel-body">
-                            <div class="bootstrap-table">
-                                <div class="fixed-table-toolbar">
-                                    <div class="columns btn-group pull-right">
-                                        <div class="keep-open btn-group" title="Columns">
-                                            <button type="button" class="btn btn-default dropdown-toggle" style="font-weight: bold;font-size: x-small" data-toggle="dropdown">More Options<span class="caret"></span></button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" data-field="id" value="1" checked="checked"> Posting Date</label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" data-field="name" value="2" checked="checked"> Type</label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" data-field="price" value="3" checked="checked"> Amount</label>
-                                                </li>
-                                            </ul>
+                          <!-- table tab -->
+                          <div id="exTab2" class="container">
+                          <ul class="nav nav-tabs" style="width:100%">
+                          			<li class="active">
+                                  <a  href="#1" data-toggle="tab">Spending</a>
+                          			</li>
+                          			   <li><a href="#2" data-toggle="tab">Saving</a>
+                          			</li>
+                          			<li><a href="#3" data-toggle="tab">Growing</a>
+                          			</li>
+                          		</ul>
+
+                          			<div class="tab-content ">
+                          			  <div class="tab-pane active" id="1">
+
+
+
+                                    <div class="bootstrap-table">
+                                        <div class="fixed-table-toolbar">
+                                            <div class="columns btn-group pull-right">
+                                                <div class="keep-open btn-group" title="Columns">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" style="font-weight: bold;font-size: x-small" data-toggle="dropdown">More Options<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" data-field="id" value="1" checked="checked"> Posting Date</label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" data-field="name" value="2" checked="checked"> Type</label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" data-field="price" value="3" checked="checked"> Amount</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="fixed-table-container">
+                                            <div class="fixed-table-body">
+                                                <table data-toggle="table" data-url="tables/data1.json" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="col-xs-2" style="">
+                                                            <div class="th-inner sortable">Posting Date</div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                        <th class="col-xs-6" style="">
+                                                            <div class="th-inner sortable">Description
+                                                            </div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                        <th class="col-xs-1" style="">
+                                                            <div class="th-inner sortable">Type<span class="order"><span class="caret" style="margin: 10px 5px;"></span></span></div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                        <th class="col-xs-1" style="">
+                                                            <div class="th-inner sortable">Status<span class="order"><span class="caret" style="margin: 10px 5px;"></span></span></div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                        <th class="col-xs-1" style="">
+                                                            <div class="th-inner sortable">Amount</div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                        <th class="col-xs-3" style="">
+                                                            <div class="th-inner sortable">Available Balance</div>
+                                                            <div class="fht-cell"></div>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr style="text-align: left"class="no-records-found">
+                                                        <td>2017-11-17</td>
+                                                        <td>BEST BUY MACBOOK PRO 15</td>
+                                                        <td>Bill</td>
+                                                        <td>COMPLETED</td>
+                                                        <td>$ 1,151</td>
+                                                        <td>$ 792</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="fixed-table-pagination">
+                                                <div class="pull-left pagination-detail"><span class="pagination-info">Showing 1 to 0 of 0 rows</span><span class="page-list"><span class="btn-group dropup"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="page-size">10</span> <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li class="active"><a href="javascript:void(0)">10</a></li>
+                                                        <li><a href="javascript:void(0)">25</a></li>
+                                                        <li><a href="javascript:void(0)">50</a></li>
+                                                        <li><a href="javascript:void(0)">100</a></li>
+                                                    </ul>
+                                                    </span> records per page</span>
+                                                </div>
+                                                <div class="pull-right pagination">
+                                                    <ul class="pagination">
+                                                        <li class="page-first disabled"><a href="javascript:void(0)">&lt;&lt;</a></li>
+                                                        <li class="page-pre disabled"><a href="javascript:void(0)">&lt;</a></li>
+                                                        <li class="page-next disabled"><a href="javascript:void(0)">&gt;</a></li>
+                                                        <li class="page-last disabled"><a href="javascript:void(0)">&gt;&gt;</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                </div>
-                                <div class="fixed-table-container">
-                                    <div class="fixed-table-body">
-                                        <table data-toggle="table" data-url="tables/data1.json" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc" class="table table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th class="col-xs-2" style="">
-                                                    <div class="th-inner sortable">Posting Date</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th class="col-xs-6" style="">
-                                                    <div class="th-inner sortable">Description
-                                                    </div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th class="col-xs-1" style="">
-                                                    <div class="th-inner sortable">Type<span class="order"><span class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th class="col-xs-1" style="">
-                                                    <div class="th-inner sortable">Status<span class="order"><span class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th class="col-xs-1" style="">
-                                                    <div class="th-inner sortable">Amount</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th class="col-xs-3" style="">
-                                                    <div class="th-inner sortable">Available Balance</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr style="text-align: left"class="no-records-found">
-                                                <td>2017-11-17</td>
-                                                <td>BEST BUY MACBOOK PRO 15</td>
-                                                <td>Bill</td>
-                                                <td>COMPLETED</td>
-                                                <td>$ 1,151</td>
-                                                <td>$ 792</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="fixed-table-pagination">
-                                        <div class="pull-left pagination-detail"><span class="pagination-info">Showing 1 to 0 of 0 rows</span><span class="page-list"><span class="btn-group dropup"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="page-size">10</span> <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li class="active"><a href="javascript:void(0)">10</a></li>
-                                                <li><a href="javascript:void(0)">25</a></li>
-                                                <li><a href="javascript:void(0)">50</a></li>
-                                                <li><a href="javascript:void(0)">100</a></li>
-                                            </ul>
-                                            </span> records per page</span>
-                                        </div>
-                                        <div class="pull-right pagination">
-                                            <ul class="pagination">
-                                                <li class="page-first disabled"><a href="javascript:void(0)">&lt;&lt;</a></li>
-                                                <li class="page-pre disabled"><a href="javascript:void(0)">&lt;</a></li>
-                                                <li class="page-next disabled"><a href="javascript:void(0)">&gt;</a></li>
-                                                <li class="page-last disabled"><a href="javascript:void(0)">&gt;&gt;</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
+
+
+                          				</div>
+                          				<div class="tab-pane" id="2">
+                                    <h3>Saving Account Acctivity</h3>
+                          				</div>
+                                  <div class="tab-pane" id="3">
+                                    <h3>Growing Account Activity</h3>
+                          				</div>
+                          			</div>
                             </div>
+
+
+
+
                             <div class="clearfix"></div>
                         </div>
                     </div>
