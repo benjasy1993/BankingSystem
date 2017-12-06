@@ -39,7 +39,7 @@ def register(request):
 			profile.user = user
 			profile.save
 			registered = True
-			login(request, user)
+			login(request)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
 			print(user_form.errors, profile_form.errors)
@@ -58,17 +58,24 @@ def user_login(request):
 		password = request.POST.get('password')
 
 		user = authenticate(username=username, password=password)
+
 		if user:
 			login(request, user)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
-			return render(request, 'home.html', {'invalid':'Invalid username or password'})
+			return render(request, 'login.html', {'invalid':'Invalid username or password'})
+	else:
+		return render(request, 'login.html')
 
 @login_required
 def dashboard(request):
 	print request.user.id
 	balances = backend_client.getAccountInfo(request.user.id)
-	return render(request, 'dashboard.html', {'balances': balances})
+	bank_ids = backend_client.getAccountBankId(request.user.id)
+	activities1 = backend_client.getActivities(bank_ids['checking'])['content']
+	activities2 = backend_client.getActivities(bank_ids['saving'])['content']
+	activities3 = backend_client.getActivities(bank_ids['growing'])['content']
+	return render(request, 'dashboard.html', {'balances': balances,'activities1': activities1,'activities2': activities2,'activities3': activities3})
 
 @login_required
 def user_logout(request):
@@ -166,6 +173,26 @@ def internal_transfer(request):
 @login_required
 def transfer_receipt(request):
 	result = request.session['transfer_result']
+
+	print request.session['transfer_result']
+
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})
+
+
+
+def billpay_company(request):
+	if request.method == 'GET':
+		billType = request.session['qaPayeeType']
+		if billType == 'withAcct':
+			return render(request, 'billpay_company_final_step.html')
+		else:
+			return render(request, 'billpay_searchcompanyname.html')
+
+
+def change_login_pin(request):
+	return render(request, 'change_login_pin.html')
+
+def home2(request):
+	return render(request, 'home2.html')

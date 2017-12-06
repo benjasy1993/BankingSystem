@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      {% block body_block %}
+        {% if user.is_authenticated %}
+        <div class="row" id="skip_to_signin">
+          <p>Welcome, {{ user.username }}</p>
+          <br>
+          <a href="{% url 'banking_system:dashboard' %}">Go to dashboard</a>
+          <br>
+          <br>
+        </div>
+        {% else %}
+          <div class="login">
+          	<h1 class="login-heading">
+              <strong>Welcome.</strong> Please login.</h1>
+              <form method="post">
+                {% csrf_token %}
+                <span style="color: white; font-size = medium">{{ invalid }}</span>
+                <input type="text" name="username" placeholder="Username" required="required" class="input-txt" />
+                  <input type="password" name="password" placeholder="Password" required="required" class="input-txt" />
+                  <div class="login-footer">
+                    <input id="cusradio"type="radio" name="role" value="customer" checked>
+                    <label for="">Customer</label>
+                    <input id="emradio" type="radio" name="role" value="employee">
+                    <label for="emradio">Employee</label>
+                    <button type="submit" class="btn btn--right">Sign in</button>
+                  </div>
+              </form>
+          </div>
+        {% endif %}
+        {% endblock %}
+    </div>
+  </body>
+</html>
