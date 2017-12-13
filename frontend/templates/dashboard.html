@@ -24,6 +24,12 @@
                         <div>
                             <h3 class="no-margin">$ {{ balances.checking }}</h3> Spending Account
                         </div>
+                        <div>
+                            <br>
+                            <span>       Account Number: {{ balances.checking_account_num }}</span>
+                            <br>
+                            <span>       Routing Number: {{ balances.routing_num }}</span>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -36,6 +42,12 @@
                         <div>
                             <h3 class="no-margin">$ {{ balances.saving }}</h3> Saving Account
                         </div>
+                        <div>
+                            <br>
+                            <span>       Account Number: {{ balances.saving_account_num }}</span>
+                            <br>
+                            <span>       Routing Number: {{ balances.routing_num }}</span>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -47,6 +59,12 @@
                         </div>
                         <div>
                             <h3 class="no-margin">$ {{ balances.growing }}</h3> Growing Account
+                        </div>
+                        <div>
+                            <br>
+                            <span>       Account Number: {{ balances.growing_account_num }}</span>
+                            <br>
+                            <span>       Routing Number: {{ balances.routing_num }}</span>
                         </div>
                     </div>
                 </section>
@@ -236,16 +254,16 @@
                                                     </thead>
                                                     <tbody>
                                                       <ul>
-                                                      {% for Activity in activities2 %}
-                                                          <tr style="text-align: left"class="no-records-found">
-                                                          <td>{{Activity.date}}</td>
-                                                          <td>{{Activity.description}}</td>
-                                                          <td>Bill</td>
-                                                          <td>COMPLETED</td>
-                                                          <td>$ 1,151</td>
-                                                          <td>{{Activity.balance}}</td>
-                                                        </tr>
-                                                      {% endfor %}
+                                                        {% for Activity in activities2 %}
+                                                            <tr style="text-align: left"class="no-records-found">
+                                                            <td>{{Activity.date}}</td>
+                                                            <td>{{Activity.description}}</td>
+                                                            <td>{{Activity.type}}</td>
+                                                            <td>COMPLETED</td>
+                                                            <td>{{Activity.amount}}</td>
+                                                            <td>{{Activity.balance}}</td>
+                                                          </tr>
+                                                        {% endfor %}
                                                       </ul>
                                                     </tbody>
                                                 </table>
@@ -331,16 +349,16 @@
                                                     </thead>
                                                     <tbody>
                                                     <ul>
-                                                    {% for Activity in activities3 %}
-                                                        <tr style="text-align: left"class="no-records-found">
-                                                        <td>{{Activity.date}}</td>
-                                                        <td>{{Activity.description}}</td>
-                                                        <td>Bill</td>
-                                                        <td>COMPLETED</td>
-                                                        <td>$ 1,151</td>
-                                                        <td>{{Activity.balance}}</td>
-                                                      </tr>
-                                                    {% endfor %}
+                                                      {% for Activity in activities3 %}
+                                                          <tr style="text-align: left"class="no-records-found">
+                                                          <td>{{Activity.date}}</td>
+                                                          <td>{{Activity.description}}</td>
+                                                          <td>{{Activity.type}}</td>
+                                                          <td>COMPLETED</td>
+                                                          <td>{{Activity.amount}}</td>
+                                                          <td>{{Activity.balance}}</td>
+                                                        </tr>
+                                                      {% endfor %}
                                                     </ul>
                                                     </tbody>
                                                 </table>

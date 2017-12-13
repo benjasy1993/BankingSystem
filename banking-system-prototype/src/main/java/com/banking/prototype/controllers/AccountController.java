@@ -63,7 +63,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "billers/searchByName", method = RequestMethod.GET)
-    public List<CompanyAccountInfo> searchBillersByName(String input) {
+    public List<CompanyAccountInfo> searchBillersByName(@RequestParam(name = "input") String input) {
         return service.searchByName(input);
     }
 
@@ -71,6 +71,11 @@ public class AccountController {
     public void uploadCompanyAccountInfo(@RequestBody List<CompanyAccountInfo> list) {
         service.uploadCompanyAccountInfo(list);
     }
+
+//    @RequestMapping(value = "/billers/initiate", method = RequestMethod.GET)
+//    public void billersInitiate() throws Exception {
+//        service.initiateCompanyAccounts();
+//    }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public AccountInfo searchAccountInfoByAccountNumByRoutingNum(@RequestParam("routingNum") String routingNum,

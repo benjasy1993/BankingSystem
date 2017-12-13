@@ -27,7 +27,7 @@ SECRET_KEY = '^&cyb21l9r+mm(+z+!iq59dx4pl$gms5)hj&bd0iqy*!&-9v&+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,10 +82,11 @@ DATABASES = {
         'NAME': 'banking_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation

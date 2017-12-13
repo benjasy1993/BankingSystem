@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+<section class="main-content">
+    <form method="post" action="" style=" margin-top:8em;margin-left: 21em;border: 1px solid #CCCCCC" class="col-xs-8" >
+       {% csrf_token %}
+    <div class="row mg-b"  style="background-color: #00B0E7;height: 50px;margin-bottom: 0px;padding-top: 10px">
+        <div class="col-xs-8">
+            <h3 class="no-margin" style="color:#FFFFFF">Pay other People</h3>
+        </div>
+    </div>
+    <div class="row mg-b"  style="background-color: #FFF;height: 35px;margin-bottom: 0px;padding-top: 5px">
+        <div class="col-xs-8">
+            <h3 class="no-margin">Payment Information</h3>
+        </div>
+    </div>
+    <div style="margin: 0px;padding: 10px">
+    &nbsp;&nbsp;&nbsp;  <span  style="font:700 20px/20px Arial">Payment From :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select style="height: 28px" id="select1" name="account1">
+    <option value ="select">Select an Accout</option>
+    <option value ="checking">Checking Account</option>
+    <option value="saving">Saving Account</option>
+    <option value="growing">Growing Accout</option>
+    </select>
+    </div>
+        <div style="margin: 0px;padding: 10px;"  >
+            &nbsp;&nbsp;&nbsp;  <span  id="spanTo" style="font:700 20px/20px Arial;">To :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font:600 15px/15px Arial">First Name * </span>&nbsp;&nbsp;<input type="text" name="firstName">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font:600 15px/15px Arial">Last Name  * </span>&nbsp;&nbsp;<input type="text" name="lastName">
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;<input type="radio" style="margin-left: 7em" id="bankRadio" onclick="fn2()">
+            Bank Account
+            <br>
+            <div id="BankAccountDiv"  hidden="hidden" >
+            <span style="margin-left: 10em; margin-top: 0.5em; margin-bottom: 0.5em">Account Number:</span>
+            <br>
+            <input type="text" name="inputAccountNumber" id="inputAccountNumber" style="margin-left: 10em;color:#aaaaaa" value=" Account Number" onfocus="fn4()" onblur="fn6()">
+            <input type="text" name="inputRoutingNumber" id="inputRoutingNumber" style="margin-left: 10em;color:#aaaaaa" value=" Routing Number"  onfocus="fn7()" onblur="fn8()">
+            <br>
+          </div>
+        </div>
+        <div style="margin: 0px;padding: 10px; font:500 20px/20px Arial" id="AmountDate">
+            &nbsp;&nbsp;&nbsp;  <span  style="font:700 20px/20px Arial;" id="spanDate">Date:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="date" name="date" id="inputDate" style="height: 27px"> <span>mm/dd/yyyy</span>
+            <br><br>
+            &nbsp;&nbsp;&nbsp;  <span id="spanAmount" style="font:700 20px/20px Arial;">Amount:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            $<input type="text" id="inputText" name="amount">
+            <br><br>
+            <input type="button" value="Cancel">
+            <input id="btn" type="submit" style="background-color: #C7D5E3;color:#2B568E;font:700 19px/19px Arial;height: 30px" value="Submit">&nbsp; &nbsp; <span id="mid" hidden="hidden">|</span> &nbsp; &nbsp;
+        </div>
+    </form>
+</section>
+{% endblock %}

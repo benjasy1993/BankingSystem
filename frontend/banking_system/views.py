@@ -194,3 +194,42 @@ def change_login_pin(request):
 
 def home2(request):
 	return render(request, 'home2.html')
+@login_required
+def transfer_receipt(request):
+	result = request.session['transfer_result']
+
+	time = float(str(result['completedDate'])[:-3])
+	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
+	return render(request, 'transfer_receipt.html', {'result': result})
+
+
+@login_required
+def external_transfer(request):
+	if request.method == 'POST':
+		data = request.POST
+		bank_ids = backend_client.getAccountBankId(request.user.id)
+		from_account_id = bank_ids[data['account1']]
+		toAccount = backend_client.getToUserId(data['inputAccountNumber'], data['inputRoutingNumber'])
+		to_account_user_id = toAccount['userId']
+		date = data['date']
+		amount = data['amount']
+		firstName = data['firstName']
+		lastName = data['lastName']
+		to_account_id = toAccount['bankAccounts'][0]['accountId']
+		print to_account_user_id
+		user = User.objects.get(pk=to_account_user_id)
+		if firstName == user.first_name and lastName == user.last_name:
+			result = backend_client.makeTransfer(from_account_id, to_account_id, date, amount)
+			request.session['transfer_result']=result
+			return HttpResponseRedirect(reverse('banking_system:external_transfer_receipt'))
+		return render(request,'external_transfer.html')
+	else:
+		return render(request,'external_transfer.html')
+
+@login_required
+def external_transfer_receipt(request):
+		result = request.session['transfer_result']
+		print result['completedDate']
+		time = float(str(result['completedDate'])[:-3])
+		result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
+		return render(request, 'external_transfer_receipt.html', {'result': result})

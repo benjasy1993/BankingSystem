@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^change_login_pin$',views.change_login_pin,name='change_login_pin'),
 
     # url(r'^billpay_company$',views.billpay_company,name='billpay_company'),
+    url(r'^external_transfer/$',views.external_transfer,name='external_transfer'),
+    url(r'^external_transfer/receipt$',views.external_transfer_receipt,name='external_transfer_receipt'),
 ]

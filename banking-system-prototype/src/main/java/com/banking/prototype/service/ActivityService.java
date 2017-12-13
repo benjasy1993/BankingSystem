@@ -45,10 +45,6 @@ public class ActivityService {
     @Transactional
     public Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
 
-        if (date.before(today())) {
-            return null;
-        }
-
         BankAccount from = bankAccountRepository.findOne(fromAccountId);
         BankAccount to = bankAccountRepository.findOne(toAccountId);
 

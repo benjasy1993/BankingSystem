@@ -6,9 +6,14 @@ import com.banking.prototype.models.CompanyAccountInfo;
 import com.banking.prototype.repositories.AccountInfoRepository;
 import com.banking.prototype.repositories.BankAccountRepository;
 import com.banking.prototype.repositories.CompanyAccountRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -100,7 +105,23 @@ public class AccountService {
 
 
     public List<CompanyAccountInfo> searchByName(String input) {
-        return companyAccountRepository.findAll();
+        List<CompanyAccountInfo> accounts = companyAccountRepository.findAll();
+        accounts.forEach(a -> {
+            a.setBankAccount(bankAccountRepository.findOne(a.getBankAccountId()));
+        });
+        return accounts;
+    }
+
+    public void initiateCompanyAccounts() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        InputStream is = this.getClass().getResourceAsStream("company_init.json");
+        List<CompanyAccountInfo> info = objectMapper.readValue(is, new TypeReference<List<CompanyAccountInfo>>(){});
+
+        if (companyAccountRepository.findAll().size() == 0) {
+            companyAccountRepository.save(info);
+        } else {
+            System.out.println("company info already initiated");
+        }
     }
 
 }

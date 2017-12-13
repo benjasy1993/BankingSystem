@@ -1,8 +1,20 @@
 [
   {
     "companyName": "United Airlines",
-    "phoneNum": "614-214-3444",
+    "phoneNum": "412-200-3000",
     "bankAccountId": 1,
-    "address": "whatever street"
+    "address": "233 S. Wacker Drive, Chicago, IL 60606"
+  },
+  {
+    "companyName": "American Airlines",
+    "phoneNum": "412-200-3001",
+    "bankAccountId": 2,
+    "address": "4333 Amon Carter Boulevard. Fort Worth, TX 76155"
+  },
+  {
+    "companyName": "Delta Airlines",
+    "phoneNum": "412-200-3002",
+    "bankAccountId": 3,
+    "address": "1030 Delta Blvd., Atlanta, GA, 30320"
   }
 ]

@@ -219,21 +219,6 @@
                                         <span>Account Overview</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="forms.html">
-                                        <span>Statements & Documents</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="calendar.html">
-                                        <span>Alerts</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="calendar.html">
-                                        <span>My Portfolio</span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li class="dropdown show-on-hover">
@@ -271,36 +256,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="horizontal.html">
+                                    <a href="{% url 'banking_system:external_transfer' %}">
                                         <span>Send Money to Someone</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="horizontal_boxed.html">
-                                        <span>Receive Money</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown show-on-hover">
-                            <a href="javascript:;" data-toggle="dropdown">
-                                <i class="fa fa-tasks"></i>
-                                <span>Loan</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="boxed.html">
-                                        <span>Display My Loan</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="horizontal.html">
-                                        <span>Apply for a Loan</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="horizontal_boxed.html">
-                                        <span>Loan Settings</span>
                                     </a>
                                 </li>
                             </ul>
@@ -313,24 +270,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{% url 'banking_system:profile' %}">
+                                    <a href="{% url 'banking_system:dashboard' %}">
                                         <span>Update My Contact Information</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'banking_system:change_login_pin' %}">
+                                    <a href="{% url 'banking_system:dashboard' %}">
                                         <span>Change My Login Password</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="invoice.html">
-                                        <span>Change My Transaction Password</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="changelog.html">
+                            <a href="{% url 'banking_system:dashboard' %}">
                                 <i class="fa fa-info"></i>
                                 <span>Notifications</span>
                             </a>
@@ -413,6 +365,40 @@
             }
 
         }
+    var div1 = document.getElementById("EmailDiv");
+    var div2 = document.getElementById("BankAccountDiv");
+    function fn1() {
+      var div1 = document.getElementById("EmailDiv");
+      var div2 = document.getElementById("BankAccountDiv");
+        div1.hidden = false;
+        div2.hidden = true;
+        document.getElementById("bankRadio").checked = false;
+    }
+    function fn2() {
+      var div1 = document.getElementById("EmailDiv");
+      var div2 = document.getElementById("BankAccountDiv");
+        div2.hidden = false;
+        div1.hidden = true;
+        document.getElementById("emailRadio").checked = false;
+    }
+    // function fn3(){
+    //     document.getElementById("inputEmail").value = "";
+    // }
+    function fn4(){
+        document.getElementById("inputAccountNumber").value = "";
+    }
+    // function fn5() {
+    //     document.getElementById("inputEmail").value = "Email or Phone";
+    // }
+    // function fn6() {
+    //     document.getElementById("inputAccountNumber").value = "Account Number";
+    // }
+    function fn7() {
+      document.getElementById("inputRoutingNumber").value = "";
+    }
+    // function fn8() {
+    //   document.getElementById("inputRoutingNumber").value = "Routing Number";
+    // }
     </script>
 
 </body>

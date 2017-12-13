@@ -24,6 +24,10 @@ def getAccountInfo(user_id):
         result['checking'] = int(json['bankAccounts'][0]['balance'])
         result['saving'] = int(json['bankAccounts'][1]['balance'])
         result['growing'] = int(json['bankAccounts'][2]['balance'])
+        result['routing_num'] = str(json['bankAccounts'][0]['routingNum'])
+        result['checking_account_num'] = str(json['bankAccounts'][0]['accountNum'])
+        result['saving_account_num'] = str(json['bankAccounts'][1]['accountNum'])
+        result['growing_account_num'] = str(json['bankAccounts'][2]['accountNum'])
     return result
 
 def billpay_company_w_acc(user_id, toAccountNum, routine, amount, scheduledDate):
@@ -91,6 +95,14 @@ def getActivities(bank_account_id):
     r = requests.get(url = BACK_END_ENDPOINT + '/activities/list', params={
         'bankAccountId': bank_account_id})
     result = dict()
+    if r.text == '':
+        return None
+    else:
+        return r.json()
+
+def getToUserId(to_account_account_number, to_account_routing_number):
+    r = requests.get(url = BACK_END_ENDPOINT + '/accounts/search', params={'accountNum':to_account_account_number,
+    'routingNum': to_account_routing_number})
     if r.text == '':
         return None
     else:
