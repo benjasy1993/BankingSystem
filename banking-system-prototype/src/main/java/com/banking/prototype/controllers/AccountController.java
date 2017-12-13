@@ -5,11 +5,7 @@ import com.banking.prototype.models.BankAccount;
 import com.banking.prototype.models.CompanyAccountInfo;
 import com.banking.prototype.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +20,7 @@ public class AccountController {
     private AccountService service;
 
     @RequestMapping(value = "/initiate", method = RequestMethod.GET)
-    public void initiateAccounts(@RequestParam(name = "userId") int userId){
+    public void initiateAccounts(@RequestParam(name = "userId") long userId){
         service.createAccounts(userId);
     }
 
@@ -64,6 +60,11 @@ public class AccountController {
     public CompanyAccountInfo getBillerAccount(@RequestParam(name = "routingNum") String routingNum,
                                         @RequestParam(name = "accountNum") String accountNum) {
         return service.searchBillerBankAccount(routingNum, accountNum);
+    }
+
+    @RequestMapping(value = "billers/searchByName", method = RequestMethod.GET)
+    public List<CompanyAccountInfo> searchBillersByName(String input) {
+        return service.searchByName(input);
     }
 
     @RequestMapping(value = "/billers/upload", method = RequestMethod.POST)

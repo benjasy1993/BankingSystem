@@ -34,7 +34,7 @@ public class AccountInfo {
     private Date createdTime;
 
     //constructor for initialing three accounts
-    public AccountInfo(int userId) {
+    public AccountInfo(long userId) {
         this.userId = userId;
         String routingNum = AccountUtility.generateAccountNum();
         bankAccounts = new ArrayList<BankAccount>();

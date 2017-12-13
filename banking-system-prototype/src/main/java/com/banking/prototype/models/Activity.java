@@ -29,11 +29,18 @@ public class Activity {
 
     private double balance;
 
-    public Activity(long bankAccountId, long transactionId, String description, Date date, double balance) {
+    private double amount;
+
+    private TransactionType type;
+
+    public Activity(long bankAccountId, long transactionId, String description, Date date, double balance, double amount, TransactionType type) {
         this.bankAccountId = bankAccountId;
         this.transactionId = transactionId;
         this.description = description;
         this.date = date;
         this.balance = balance;
+        this.amount = amount;
+        this.type = type;
     }
+
 }

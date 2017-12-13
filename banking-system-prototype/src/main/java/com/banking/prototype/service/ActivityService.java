@@ -44,6 +44,11 @@ public class ActivityService {
 
     @Transactional
     public Transaction makeTransfer(Long fromAccountId, Long toAccountId, Double amount, Date date, TransactionType transactionType) throws Exception{
+
+        if (date.before(today())) {
+            return null;
+        }
+
         BankAccount from = bankAccountRepository.findOne(fromAccountId);
         BankAccount to = bankAccountRepository.findOne(toAccountId);
 
@@ -77,7 +82,9 @@ public class ActivityService {
                         transaction.getTransactionId(),
                         generateDescription(transaction),
                         new Date(transaction.getScheduledDate().getTime()),
-                        from.getBalance()));
+                        from.getBalance(),
+                        amount,
+                        transaction.getType()));
 
         activityRepository.save(
                 new Activity(
@@ -85,7 +92,9 @@ public class ActivityService {
                         transaction.getTransactionId(),
                         generateDescription(transaction),
                         new Date(transaction.getScheduledDate().getTime()),
-                        to.getBalance()));
+                        to.getBalance(),
+                        amount,
+                        transaction.getType()));
         return transaction;
     }
 
@@ -103,7 +112,7 @@ public class ActivityService {
     }
 
     private String generateDescription(Transaction transaction) {
-        String suffix = " from " + transaction.getFromBankAccountId() + " to " +
+        String suffix = " from account #" + transaction.getFromBankAccountId() + " to account #" +
                 transaction.getToBankAccountId() + " with Transaction #" + transaction.getTransactionId();
         switch (transaction.getType()) {
             case BILL_PAY:

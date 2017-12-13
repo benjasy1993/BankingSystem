@@ -106,29 +106,23 @@
                         <div class="container col-md-12" style="position: relative; float: left">
 
                           <form class="form-horizontal" enctype="multipart/form-data" method="POST">
-                            {% csrf_token %}
-                            {% for field in user_form.visible_fields %}
-                            <div class="form-group bootstrap3-required">
-                                <label class="col-md-2 control-label" style="text-align: left" for="{{ field.name }}">{{ field.label }}</label>
-
-                                <div class="col-md-4">
-                                    <input class="form-control" id="id_{{field.name}}" name="{{ field.name }}" placeholder="{{field.label}}" style="margin-left:{{field.offset}}px" title="" required="" type="text"/>
-                                <!-- </div> -->
+                              {% csrf_token %}
+                              {{ user_form.as_p }}
+                              <div style="margin-left: 12rem; margin-bottom: 5rem">
+                                <input type="submit" class="btn-bofa btn-bofa-small btn-bofa-blue" value="Register"> </input>
                               </div>
-                              {% for error in field.errors %}
-                              <span class="alert-danger col-md-4" style="border: 1px solid transaprent; border-radius: 4px; hight: 10rem;">
-                                <strong>{{ error|escape }}</strong>
-                              </span>
-                              {% endfor %}
-                            </div>
-                              {% endfor %}
-                              {% for field in profile_form.visible_fields %}
+                          </form>
+
+
+
+
+                              <!-- {% for field in profile_form.visible_fields %}
                               <div class="form-group bootstrap3-required">
                                   <label class="col-md-2 control-label" style="text-align: left" for="{{ field.name }}">{{ field.label }}</label>
 
                                   <div class="col-md-4">
-                                      <input class="form-control" id="id_{{field.name}}" name="{{ field.name }}" placeholder="{{field.label}}" style="margin-left:{{field.offset}}px" title="" required="" type="text"/>
-                                  <!-- </div> -->
+                                      <input class="form-control" id="id_{{field.name}}" name="{{ field.name }}" placeholder="{{field.label}}" style="margin-left:{{field.offset}}px" title="" required="" type="{{field.type}}"/>
+                                  </div>
                                 </div>
                                 {% for error in field.errors %}
                                 <span class="alert-danger col-md-4" style="border: 1px solid transaprent; border-radius: 4px;">
@@ -136,13 +130,13 @@
                                 </span>
                                 {% endfor %}
                               </div>
-                                {% endfor %}
+                                {% endfor %} -->
                             <!-- {{ user_form.as_p }}
                             {{ profile_form.as_p }} -->
-                            <div style="margin-left: 12rem; margin-bottom: 5rem">
+                            <!-- <div style="margin-left: 12rem; margin-bottom: 5rem">
                               <input type="submit" class="btn-bofa btn-bofa-small btn-bofa-blue" value="Register"> </input>
                             </div>
-                          </form>
+                          </form> -->
                         </div>
                     </div><!-- /.container -->
                 </div>

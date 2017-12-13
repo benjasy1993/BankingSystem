@@ -16,7 +16,7 @@ import datetime
 
 def home(request):
 	if request.method == 'GET':
-		return render(request, 'home.html')
+		return render(request, 'home2.html')
 
 	else:
 		return user_login(request)
@@ -28,28 +28,28 @@ def register(request):
 	if request.method == 'POST':
 		print request.POST
 		user_form = UserForm(data=request.POST)
-		profile_form = UserProfileInfoForm(data=request.POST)
+		# profile_form = UserProfileInfoForm(data=request.POST)
 
-		if user_form.is_valid() and profile_form.is_valid():
+		if user_form.is_valid():
 			user = user_form.save()
 			user.set_password(user.password)
 			user.save()
 			backend_client.setUpAccount(user.id)
-			profile = profile_form.save(commit=False)
-			profile.user = user
-			profile.save
+			# profile = profile_form.save(commit=False)
+			# profile.user = user
+			# profile.save
 			registered = True
-			login(request)
+			login(request, user)
 			return HttpResponseRedirect(reverse('banking_system:dashboard'))
 		else:
-			print(user_form.errors, profile_form.errors)
+			print(user_form.errors)
 	else:
 		user_form = UserForm()
-		profile_form = UserProfileInfoForm()
+		# profile_form = UserProfileInfoForm()
 			# This is the render and context dictionary to feed
 			# back to the registration.html file page.
 	return render(request, 'register.html', {'user_form': user_form,
-											   	 'profile_form': profile_form,
+											   	 # 'profile_form': profile_form,
 											   	 'registered': registered})
 
 def user_login(request):
@@ -173,9 +173,7 @@ def internal_transfer(request):
 @login_required
 def transfer_receipt(request):
 	result = request.session['transfer_result']
-
 	print request.session['transfer_result']
-
 	time = float(str(result['completedDate'])[:-3])
 	result['completedDate'] = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 	return render(request, 'transfer_receipt.html', {'result': result})

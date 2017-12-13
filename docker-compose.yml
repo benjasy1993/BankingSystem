@@ -1,0 +1,21 @@
+mysql:
+  image: mysql:5.6
+  environment:
+    MYSQL_ROOT_PASSWORD: "root"
+    MYSQL_ROOT_PASSWORD: "root"
+    MYSQL_DATABASE: "banking_db"
+  ports:
+    - "3306:3306"
+# frontend:
+#   build: ./frontend
+#   ports:
+#     - "8000:8000"
+#   links:
+#     - "mysql:mysql"  
+#   environment:
+#     MYSQL_URI: "http://mysql:3306"
+
+# backend:
+#   image: ./banking-system-prototype
+#   ports:
+#     - "8002:8002"

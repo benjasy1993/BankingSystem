@@ -26,12 +26,17 @@ public class AccountService {
     @Autowired
     private CompanyAccountRepository companyAccountRepository;
 
-    public void createAccounts(int userId){
-        AccountInfo accountInfo = new AccountInfo(userId);
-        for (BankAccount account : accountInfo.getBankAccounts()) {
-            account.setBalance(500);
+
+    //if accounts is already created then do nothing
+    public void createAccounts(long userId){
+        if (!accountInfoRepository.exists(userId)) {
+            AccountInfo accountInfo = new AccountInfo(userId);
+
+            for (BankAccount account : accountInfo.getBankAccounts()) {
+                account.setBalance(500);
+            }
+            accountInfoRepository.save(accountInfo);
         }
-        accountInfoRepository.save(accountInfo);
     }
 
     public AccountInfo getAccountInfo(long userId) {
@@ -91,6 +96,11 @@ public class AccountService {
         info.setBankAccounts(result);
 
         return info;
+    }
+
+
+    public List<CompanyAccountInfo> searchByName(String input) {
+        return companyAccountRepository.findAll();
     }
 
 }
