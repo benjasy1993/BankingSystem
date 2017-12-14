@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-BACK_END_ENDPOINT = 'http://128.237.141.209:8002'
+BACK_END_ENDPOINT = 'http://127.0.0.1:8002'
 ACCOUNTS_URL = BACK_END_ENDPOINT + '/accounts'
 
 def setUpAccount(user_id):
@@ -96,6 +96,17 @@ def getActivities(bank_account_id):
     else:
         return r.json()
 
+
+def billpay_searchcompanyname(input):
+    r = requests.get(url = BACK_END_ENDPOINT + '/accounts/billers/searchByName', params={
+    'input':input})
+    result = dict()
+    if r.text == '':
+        return None
+    else:
+        return r.json()
+
+# print billpay_searchcompanyname(1)
 # print getActivities()
 
 

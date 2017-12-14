@@ -3,13 +3,15 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from banking_system.forms import UserForm, UserProfileInfoForm, UserUpdateForm
+from banking_system.forms import UserForm, UserUpdateForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from banking_system.models import UserProfileInfo
+from django.http import JsonResponse
+
+# from banking_system.models import UserProfileInfo
 
 import backend_client
 import datetime
@@ -127,6 +129,29 @@ def billpay_addbill(request):
 			return HttpResponseRedirect(reverse('banking_system:billpay_searchcompanyname'))
 
 @login_required
+def billpay_company(request):
+	if request.method == 'GET':
+		data = request.GET
+		routingNum = data['routingNum']
+		accountNum = data['accountNum']
+		return render(request, 'billpay_company_final_step.html', {'routingNum': routingNum, 'accountNum' : accountNum })
+	else:
+		data = request.POST
+		billpay = dict()
+
+		# print request.user.id
+		billpay['user_id']=str(request.user.id)
+		billpay['toAccountNum']=str(request.POST['accountNumber'])
+		billpay['routine']=str(request.POST['routingNumber'])
+		billpay['amount']=str(request.POST['amount'])
+		billpay_result = backend_client.billpay_company_w_acc(billpay['user_id'], billpay['toAccountNum'], billpay['routine'], billpay['amount'], data['date'])
+		# print billpay_result
+
+		request.session['billpay_result'] = billpay_result
+		return HttpResponseRedirect(reverse('banking_system:billpay_company_receipt'))
+
+
+@login_required
 def billpay_company_w_acc(request):
 	if request.method == 'GET':
 		return render(request, 'billpay_company_final_step.html')
@@ -182,15 +207,14 @@ def transfer_receipt(request):
 	return render(request, 'transfer_receipt.html', {'result': result})
 
 @login_required
-def billpay_searchcompanyname(request):
-		if request.method == 'GET':
-			return render(request, 'billpay_searchcompanyname.html')
-		else:
-			data = request.POST
-			searchVal = str(data['billerName'])
-			print searchVal
-			return render(request, 'billpay_search_company_result.html', {'searchVal':searchVal })
-
+def search_companyname(request):
+	search_input = request.GET.get('input')
+	print search_input
+	if search_input:
+		results = backend_client.billpay_searchcompanyname(search_input)
+		print results
+		data = {'results': results}
+		return JsonResponse(data)
 
 
 def change_login_pin(request):
@@ -200,7 +224,7 @@ def home2(request):
 	return render(request, 'home2.html')
 
 @login_required
-def billpay_searchname(request):
+def billpay_searchcompanyname(request):
 	if request.method == 'GET':
 		return render(request, 'billpay_searchcompanyname.html')
 

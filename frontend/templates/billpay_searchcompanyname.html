@@ -12,7 +12,7 @@
           </div>
               <div class="container" style="width: 100%">
 
-                    <div class="panel" height="500px">
+                    <div class="panel" height="1000px">
                         <div class="panel-heading">Add A Bill</div>
 
                           <h3>Search</h3>
@@ -22,12 +22,15 @@
                           <p>
                             <span id="sp_billerName">
                               <label class="search-label" for="billerName">Biller Name<span class="search-span">As it appears on  bill</span></label>
-                              <input name="billerName" id="billerName" type="text" value="" maxlength="32" size="36">
+                              <input name="billerName" id="billerName" type="text" value="" maxlength="32" size="36" required>
+                              <div class="search_suggest" id="search_results"></div>
+                              <span id="empty_search_result">{{ invalid }}</span>
+                              <!-- <div class="search_suggest" id="search_results"></div> -->
                             </span>
                           </p>
 
                             <ul class="search-buttons">
-                              <li class="btn"><input class="btn" style="font-weight: bold; background-color: #ffa500;" type="submit" name"search" value="Search"></li>
+                              <li class="btn"><input class="btn" style="font-weight: bold; background-color: #ffa500;" type="submit" name"button" value="Continue"></li>
                               <li class="btn btn-default" style="font-weight: bold"><a href="{% url 'banking_system:dashboard' %}">Cancel</a></li>
                             </ul>
                           </form>
@@ -35,5 +38,81 @@
                     </div>
       </div>
   </section>
+  {% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
+    </script> <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+
+    $("#billerName").keyup(function () {
+      console.log( $(this).val() );
+      var billerName = $(this).val();
+      $.ajax(
+        {
+          type:"GET",
+          url: "/search_companyname",
+          data:{
+            input:billerName
+          },
+          success: function(data){
+            if(data.results){
+              console.log(data.results)
+              var suggestDivEl = document.getElementById("search_results");
+              cleanSuggestedResults("search_results");
+
+              for (var i=0; i<data.results.length && i<10; i++) {
+                var textEl = document.createTextNode(data.results[i]['companyName']);
+
+              	var divEl = document.createElement("div");
+              	divEl.appendChild(textEl);
+              	divEl.className   = "suggest_list_div";
+              	divEl.onmouseover = suggestOver;
+              	divEl.onmouseout  = suggestOut;
+
+                var routingNum =''
+                if(data.results[i]['backAccount']){
+                  routingNum = data.results[i]['bankAccount']['routingNum']
+                }
+                var accountNum = ''
+                if(data.results[i]['backAccount']){
+                  accountNum = data.results[i]['bankAccount']['routingNum']
+                }
+                var searchURL  = "billpay_company?routingNum=" + escape(routingNum) + "&accountNum=" + escape(accountNum);
+
+                var anchorEl  = document.createElement("a");
+                anchorEl.href = searchURL;
+                anchorEl.className="suggest_href";
+                anchorEl.appendChild(divEl);
+
+            		suggestDivEl.appendChild(anchorEl);
+            	}
+
+            }else{
+              $("empty_search_result").html("No Search Result")
+            }
+          }
+        }
+      )
+    });
+
+    function suggestOver() {
+       document.body.style.cursor = 'pointer';
+        this.className = "suggest_list_div_over";
+      }
+
+    function suggestOut() {
+     document.body.style.cursor = 'default';
+      this.className = "suggest_list_div";
+    }
+
+    function cleanSuggestedResults(elementId) {
+       var divSuggestResults = document.getElementById(elementId);
+        while (divSuggestResults.hasChildNodes()) {
+            divSuggestResults.removeChild(divSuggestResults.firstChild);
+           }
+    }
+    </script>
+{% endblock %}
 
 {% endblock %}

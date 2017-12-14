@@ -1,0 +1,16 @@
+.suggest_list_div {
+	background-color: #FFFFFF;
+	padding: 2px 6px 2px 6px;
+	border: 1px solid #000000;
+}
+.suggest_list_div_over {
+	background-color: #CCCCCC;
+	padding: 2px 6px 2px 6px;
+	border: 1px solid #000000;
+}
+.search_suggest {
+	position: absolute;
+	background-color: #FFFFFF;
+	text-align: left;
+	z-index: 100;
+}

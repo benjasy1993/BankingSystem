@@ -23,4 +23,7 @@ urlpatterns = [
     url(r'^change_login_pin$',views.change_login_pin,name='change_login_pin'),
 
     url(r'^billpay_addbill/searchname$',views.billpay_searchcompanyname,name='billpay_searchcompanyname'),
+    url(r'^search_companyname/$', views.search_companyname, name='search_companyname'  ),
+
+    url(r'^billpay_addbill/billpay_company/$',views.billpay_company,name='billpay_company'),
 ]
