@@ -28,12 +28,12 @@
                           <input type="hidden" name="buttonClicked">
                             <p class="row-fix para">
                             <label class="para col-xs-3" for="accountNumber">* Account Number<span class="bp-span">As it appears on  bill</span></label>
-                            <input name="accountNumber" id="accountNumber" type="text" value="" maxlength="12" size="22">
+                            <input name="accountNumber" id="accountNumber" type="text" value="{{ accountNum }}" maxlength="12" size="22">
                             </p>
 
                             <p class="last-row para" id="sp_routine">
                             <label class="para col-xs-3" for="routingNumber">* Routine Number</label>
-                            <input name="routingNumber" type="text" id="routingNumber" size="22" maxlength="12" value="" onkeypress="return numbersonly(this, event)">
+                            <input name="routingNumber" type="text" id="routingNumber" size="22" maxlength="12" value="{{ routingNum }}" onkeypress="return numbersonly(this, event)">
                             </p>
                             <p class="last-row para" id="sp_amount">
                                 <label class="para col-xs-3" for="amount">* Amount</label>
